@@ -78,7 +78,7 @@ print 'Done!'
 
 print bcolors.WARNING
 #Starting up ettercap and launching the attack
-print("Starting the Attack NOW!""\n""\n"")
+print("Starting the Attack NOW!""\n")
 print bcolors.ENDC
 print bcolors.FAIL
 print("#### NB: CTRL + C IS DISAPPRECIATED, USE Q FOR QUIT INSTEAD! ####")
