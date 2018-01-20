@@ -25,7 +25,7 @@ except:
     sys.exit()
 
 from discovery import *
-#from lib import htmlExport
+from lib import htmlExport
 from lib import hostchecker
 
 def usage():

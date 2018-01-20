@@ -24,6 +24,10 @@ Choose Attack Vector:
 ```
 How to install & Run:
 -------------------
+$ git clone https://github.com/noobscode/KalEl
+
+$ cd kalel/
+
 $ sudo python setup.py
 
 $ sudo python run.py
