@@ -3,7 +3,6 @@ import os
 import time
 import subprocess
 import sys
-import pip
 
 # Verify that the user is root
 if not os.geteuid()==0:
@@ -13,7 +12,7 @@ print("Setting up KalEl For You...")
 
 # Write permission to run
 subprocess.call(['chmod', '+x', 'run.py'])
-
+subprocess.call(['chmod', '+x', 'modules/harvester/engine.py'])
 # Check if config files is present, if they are we will remove them
 if os.path.isfile("src/setupOK"):
     subprocess.call(['rm', 'src/setupOK'])
@@ -21,11 +20,16 @@ if os.path.isfile("src/setupOK"):
 if os.path.isfile("src/config.cfg"):
     subprocess.call(['rm', 'src/config.py'])
 
-# Install required packages for email harvester
-pip.main(['install', '-r', 'module/emailgather/requirements.txt'])
-
 # Install sendemail for mail spoofing
-subprocess.call(['sudo', 'apt-get', 'install', '-y', 'sendemail'])
+try:
+    subprocess.call(["sendemail"])
+except OSError as e:
+    if e.errno == os.errno.ENOENT:
+        print('sendemail not install, installing now')
+        subprocess.call(['sudo', 'apt-get', 'install', '-y', 'sendemail'])
+    else:
+        print("something else went wrong, try again")
+        raise
 
 # Check if ettercap is installed or present
 try:

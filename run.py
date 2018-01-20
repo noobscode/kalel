@@ -76,9 +76,9 @@ def mainmenu():
     ans=True
     while ans:
         print ("""
-        1.Traffic Spoof Attack #Redirect websites with dns spoofing
-        2.Email Harvester      #Harvest Emails by spesific domains
-        3.Spoof Emails          #Send fake email to and from anyone
+        1.Traffic Spoof Attack # Force Redirect Network Traffic
+        2.The Harvester        # Harvest Email, Vhosts, Subdomain names (more)
+        3.Spoof Emails         # Send Fake Emails To And From Anyone
         4.Not in use
         5.Help/Tutorial
         6.Exit/Quit
@@ -89,10 +89,9 @@ def mainmenu():
             logo()
             import module.ettercap.spoof
         elif ans=="2":
-            print('This is still under construction')
-            #os.system('clear')
-            #logo()
-            #subprocess.call(['module/emailgather/EmailHarvester.py'], shell=True)
+            os.system('clear')
+            logo()
+            import module.harvester.prep
         elif ans=="3":
             os.system('clear')
             logo()
