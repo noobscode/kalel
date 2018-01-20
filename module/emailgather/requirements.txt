@@ -1,4 +1,0 @@
-termcolor
-colorama
-requests
-validators
