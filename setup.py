@@ -13,6 +13,7 @@ print("Setting up KalEl For You...")
 # Write permission to run
 subprocess.call(['chmod', '+x', 'run.py'])
 subprocess.call(['chmod', '+x', 'modules/harvester/engine.py'])
+
 # Check if config files is present, if they are we will remove them
 if os.path.isfile("src/setupOK"):
     subprocess.call(['rm', 'src/setupOK'])

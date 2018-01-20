@@ -6,6 +6,7 @@ __pycache__/
 etter.dns
 *config.py
 *setupOK
+*emailgather
 # C extensions
 *.so
 
