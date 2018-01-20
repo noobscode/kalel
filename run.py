@@ -15,6 +15,15 @@ class bcolors:
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
 
+def setup():
+    if not os.path.isfile("src/setupOK"):
+        print("You must run setup.py first\n")
+        ans1 = raw_input("Would you like to run setup now?\n y/n: ")
+        if ans1 == "y":
+            import setup
+        else:
+            exit(1)
+
 def logo():
     print """
  __  ___      ___       __          _______  __
@@ -24,6 +33,7 @@ def logo():
 |  .  \   /  _____  \  |  `----.   |  |____ |  `----.
 |__|\__\ /__/     \__\ |_______|   |_______||_______|
                                                      """
+
 # initial user menu
 def agreement():
     if not os.path.isfile("src/agreement"):
@@ -54,8 +64,7 @@ def agreement():
 def intro():
     print bcolors.HEADER + bcolors.BOLD
     print("Kal El is a neat tool for Network Stress Testing and Penetration Testing")
-    print("This tool requires ettercap installed, \nif not present we will try and install it as we go")
-    print("The soul purpose of this tool is to stress test networks and computers")
+    print("This toolkit is still a work in progress and is a very early build.")
     print bcolors.ENDC
 
 def mainmenu():
@@ -67,23 +76,37 @@ def mainmenu():
     ans=True
     while ans:
         print ("""
-        1.Spoof Attack
-        2.DDOS
-        3.Help/Tutorial
-        4.Exit/Quit
+        1.Traffic Spoof Attack #Redirect websites with dns spoofing
+        2.Email Harvester      #Harvest Emails by spesific domains
+        3.Spoof Emails          #Send fake email to and from anyone
+        4.Not in use
+        5.Help/Tutorial
+        6.Exit/Quit
         """)
-        ans=raw_input("What would you like to do? ")
+        ans=raw_input("Choose Attack Vector: ")
         if ans=="1":
-            import module.spoof
+            os.system('clear')
+            logo()
+            import module.ettercap.spoof
         elif ans=="2":
-            import module.ddos
+            print('This is still under construction')
+            #os.system('clear')
+            #logo()
+            #subprocess.call(['module/emailgather/EmailHarvester.py'], shell=True)
         elif ans=="3":
-            print("\n Nothing here yet")
+            os.system('clear')
+            logo()
+            import module.spoofmail.spoofmail
         elif ans=="4":
+            print('Not in use yet')
+            #import module.ddos
+        elif ans=="5":
+            print("Visit out github at: https://github.com/noobscode/kalel")
+        elif ans=="6":
             print("\n Goodbye")
             exit(1)
         elif ans !="":
             print("\n Not Valid Choice Try again")
-
+setup()
 mainmenu()
 #End

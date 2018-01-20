@@ -4,6 +4,8 @@ __pycache__/
 *$py.class
 *agreement
 etter.dns
+*config.py
+*setupOK
 # C extensions
 *.so
 

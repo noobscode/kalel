@@ -1,0 +1,4 @@
+termcolor
+colorama
+requests
+validators
