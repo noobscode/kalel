@@ -15,6 +15,7 @@ class bcolors:
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
 
+# Write SMTP server to config file
 def writetoconf():
     with open("src/config.py", "a") as filewrite:
         filewrite.write("\n#[SPOOFMAIL]\n")
@@ -22,8 +23,7 @@ def writetoconf():
         filewrite.write(" = ")
         filewrite.write("'%s'\n" % smtpserver)
 
-print('\n\nWellcome to spoofmail')
-
+# SPOOFMAIL Header
 print bcolors.HEADER
 print """SpoofMail is a tool to send fake emails to and from anyone."""
 print bcolors.ENDC
@@ -35,6 +35,7 @@ If you are not sure how to find your ISP's smtp server you can let kalel
 try and use some free and open smtp servers on the internet\nbut it might not work."""
 print bcolors.ENDC
 
+# Check if SMTP server is defined in src/config
 try:
     from src.config import smtpserver
     print('SMTP Server is manually set in src/conf.py\n')
@@ -48,6 +49,7 @@ except ImportError:
         smtpserver = 'smtp.altibox.no'
         print('Letting Kalel decide smtp server\nServer: %s' % smtpserver)
 
+# Input variables to use when performing action
 toemail = raw_input('Target email: ')
 fromemail = raw_input('Sender email: ')
 subject = raw_input('Subject: ')

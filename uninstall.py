@@ -7,11 +7,13 @@ import time
 
 print('KalEl Uninstaller...')
 
+# Check if KalEl is installed
 if not os.path.isfile('/opt/KalEl/run.py'):
     if not os.path.isfile('/usr/bin/kalel'):
         print('KaleEl Is not installed')
         exit(1)
 
+# If KalEl is installed we'll remove it
 if os.path.isdir('/opt/KalEl'):
     print('Found KalEl...')
     print('Removing')

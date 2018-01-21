@@ -15,7 +15,8 @@ print("Setting up KalEl For You...")
 if os.path.isfile('/opt/KalEl/run.py'):
     reinstall = raw_input('KalEl is allready installed!\nDo you want to reinstall? (y/n): ')
     if reinstall == ('y'):
-        subprocess.Popen("rm -fr /opt/KalEl", shell=True).wait()
+        #subprocess.Popen("rm -fr /opt/KalEl", shell=True).wait()
+        import uninstall
     else:
         exit(1)
 
@@ -23,34 +24,50 @@ print("[*] Copying KalEl into the /opt/KalEl directory...")
 cwdpath = os.getcwd()
 subprocess.Popen("cp -rf %s /opt/KalEl" % cwdpath, shell=True).wait()
 
-# Create a link in /usr/bin for easy start
+# Create a symbolic link for performing actions via /usr/bin
+subprocess.Popen("ln -s /opt/KalEl/run.py /opt/KalEl/kalel", shell=True).wait()
+subprocess.Popen("ln -s /opt/KalEl/kalelupdate.py /opt/KalEl/kalelupdate", shell=True).wait()
+subprocess.Popen("ln -s /opt/KalEl/uninstall.py /opt/KalEl/kaleluninstall", shell=True).wait()
+
 print("[*] Installing KalEl installer to /usr/bin/kalel...")
 if os.path.isfile("/usr/bin/kalel"):
     subprocess.Popen("rm /usr/bin/kalel", shell=True).wait()
 else:
     pass
+# Link for main program
 subprocess.Popen("echo #!/bin/bash > /usr/bin/kalel", shell=True).wait()
 subprocess.Popen("echo cd /opt/KalEl >> /usr/bin/kalel", shell=True).wait()
 subprocess.Popen("echo exec python2 kalel $@ >> /usr/bin/kalel", shell=True).wait()
 subprocess.Popen("chmod +x /usr/bin/kalel", shell=True).wait()
 
-# Create a symbolic link for launching the toolkit via usr/bin
-subprocess.Popen("ln -s /opt/KalEl/run.py /opt/KalEl/kalel", shell=True).wait()
-subprocess.Popen("ln -s /opt/KalEl/kalelupdate.py /opt/KalEl/kalelupdate", shell=True).wait()
+# Link for update
+subprocess.Popen("echo #!/bin/bash > /usr/bin/kalelupdate", shell=True).wait()
+subprocess.Popen("echo cd /opt/KalEl >> /usr/bin/kalelupdate", shell=True).wait()
+subprocess.Popen("echo exec python2 kalelupdate $@ >> /usr/bin/kalelupdate", shell=True).wait()
+subprocess.Popen("chmod +x /usr/bin/kalelupdate", shell=True).wait()
+
+# Link for easy Uninstaller
+subprocess.Popen("echo #!/bin/bash > /usr/bin/kaleluninstall", shell=True).wait()
+subprocess.Popen("echo cd /opt/KalEl >> /usr/bin/kaleluninstall", shell=True).wait()
+subprocess.Popen("echo exec python2 kaleluninstall $@ >> /usr/bin/kaleluninstall", shell=True).wait()
+subprocess.Popen("chmod +x /usr/bin/kaleluninstall", shell=True).wait()
 
 # Write permission to run
 subprocess.call(['chmod', '+x', '/opt/KalEl/run.py'])
+subprocess.call(['chmod', '+x', '/opt/KalEl/uninstall.py'])
 subprocess.call(['chmod', '+x', '/opt/KalEl/module/harvester/engine.py'])
 
 # Check if config files is present, if they are we will remove them
 if os.path.isfile("/opt/KalEl/src/setupOK"):
     subprocess.call(['rm', '/opt/KalEl/src/setupOK'])
 
-if os.path.isfile("/opt/KalEl/src/config.cfg"):
+if os.path.isfile("/opt/KalEl/src/config.py"):
     subprocess.call(['rm', '/opt/KalEl/src/config.py'])
 
 ############# CHECK REQUIRED DEPENDENCIES ####################
+
 FNULL = open(os.devnull, 'w')
+
 # Install sendemail for mail spoofing
 try:
     subprocess.call(["sendemail"], stdout=FNULL, stderr=subprocess.STDOUT)

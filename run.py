@@ -5,6 +5,13 @@ import time
 import subprocess
 import sys
 
+# python 2 and 3 compatibility
+try:
+    from urllib.request import urlopen
+except ImportError:
+    from urllib import urlopen
+import multiprocessing
+
 class bcolors:
     HEADER = '\033[95m'
     OKBLUE = '\033[94m'
@@ -15,9 +22,11 @@ class bcolors:
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
 
+# Make sure Tool is run via sudo or by root
 if not os.geteuid()==0:
     sys.exit("\nOnly root can run this script\nTry with $ sudo kalel")
 
+# Check if setup is complete
 def setup():
     if not os.path.isfile("/opt/KalEl/src/setupOK"):
         print("You must run setup.py first\n")
@@ -27,16 +36,76 @@ def setup():
         else:
             exit(1)
 
-def logo():
-    print """
- __  ___      ___       __          _______  __
-|  |/  /     /   \     |  |        |   ____||  |
-|  '  /     /  ^  \    |  |        |  |__   |  |
-|    <     /  /_\  \   |  |        |   __|  |  |
-|  .  \   /  _____  \  |  `----.   |  |____ |  `----.
-|__|\__\ /__/     \__\ |_______|   |_______||_______|
-                                                     """
+# Get the version number:
+def get_version():
+    define_version = open("src/kalel.version", "r").read().rstrip()
+    # define_version = '1.1.1'
+    return define_version
 
+define_version = get_version()
+
+def pullupdate(define_version):
+    cv = get_version()
+
+    # pull version
+    try:
+        version = ""
+
+        def pull_version():
+            if not os.path.isfile("version.lock"):
+                try:
+
+                    url = (
+                        'https://raw.githubusercontent.com/noobscode/kalel/master/src/kalal.version')
+                    version = urlopen(url).read().rstrip().decode('utf-8')
+                    filewrite = open("version.lock", "w")
+                    filewrite.write(version)
+                    filewrite.close()
+
+                except KeyboardInterrupt:
+                    version = "keyboard interrupt"
+
+            else:
+                version = open("version.lock", "r").read()
+
+            if cv != version:
+                if version != "":
+                    print("There is a new update available!")
+            else:
+                print("KalEl is up to date!")
+
+        # Pull the version from out git repo
+        p = multiprocessing.Process(target=pull_version)
+        p.start()
+
+        # Wait for 5 seconds or until process finishes
+        p.join(8)
+
+        # If thread is still active
+        if p.is_alive():
+            print(
+                bcolors.FAIL + " Unable to check for new version are you connected to the internet?\n" + bcolors.ENDC)
+            # terminate the process
+            p.terminate()
+            p.join()
+
+    except Exception as err:
+        print(err)
+        # pass
+
+def logo():
+    print(bcolors.OKBLUE + """
+    __  ___      ___       __          _______  __
+   |  |/  /     /   \     |  |        |   ____||  |
+   |  '  /     /  ^  \    |  |        |  |__   |  |
+   |    <     /  /_\  \   |  |        |   __|  |  |
+   |  .  \   /  _____  \  |  `----.   |  |____ |  `----.
+   |__|\__\ /__/     \__\ |_______|   |_______||_______|
+
+    - Kal El Network Penetration Testing (""" + bcolors.WARNING + """KalEl NPT""" + bcolors.OKBLUE + """)
+    - Created by:""" + bcolors.FAIL + """ NoobsCode """ + bcolors.OKBLUE + """ """ + bcolors.WARNING + """ """ + bcolors.OKBLUE + """
+    - Version: """ + bcolors.OKGREEN + """%s""" % (define_version) + bcolors.WARNING + """ """), pullupdate(define_version)
+    print("""    - Github: """ + bcolors.OKGREEN + """https://www.Github.com/NoobsCode/KalEl""" + bcolors.OKBLUE + """ """)
 # initial user menu
 def agreement():
     if not os.path.isfile("/opt/KalEl/src/agreement"):
@@ -65,19 +134,18 @@ def agreement():
 
 #Header information Intro text
 def intro():
-    print bcolors.HEADER + bcolors.BOLD
-    print("Kal El is a neat tool for Network Stress Testing and Penetration Testing")
-    print("This toolkit is still a work in progress and is a very early build.")
-    print bcolors.ENDC
+    print(bcolors.HEADER + bcolors.BOLD + "\n Kal El is a neat tool for Network Stress Testing and Penetration Testing")
+    print(" This toolkit is still a work in progress and is a very early build." + bcolors.ENDC)
 
+# Create the main menu
 def mainmenu():
     os.system('clear')
     agreement()
     os.system('clear')
-    logo()
-    intro()
     ans=True
     while ans:
+        logo()
+        intro()
         print ("""
         1.Traffic Spoof Attack # Force Redirect Network Traffic (DNS SPOOF)
         2.The Harvester        # Harvest Email, Vhosts, Subdomain names (more)
@@ -111,6 +179,7 @@ def mainmenu():
         elif ans !="":
             print("\n Not Valid Choice Try again")
 
+
 #Check if we are running Kali Linux
 def check_kali():
     if os.path.isfile("/etc/apt/sources.list"):
@@ -125,6 +194,7 @@ def check_kali():
         print("[!] Not running a Debian variant..")
         return "Non-Kali"
 
+# KalEl Update
 def update_kalel():
     kali = check_kali()
     if kali == "Kali":
@@ -141,6 +211,7 @@ def update_kalel():
         print("Update finished, returning to main menu.")
         time.sleep(2)
 
+# Run the program
 setup()
 mainmenu()
 #End
