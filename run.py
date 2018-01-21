@@ -53,13 +53,13 @@ def pullupdate(define_version):
         version = ""
 
         def pull_version():
-            if not os.path.isfile("version.lock"):
+            if not os.path.isfile("/version.lock"):
                 try:
 
                     url = (
                         'https://raw.githubusercontent.com/noobscode/kalel/master/src/kalel.version')
                     version = urlopen(url).read().rstrip().decode('utf-8')
-                    filewrite = open("version.lock", "w")
+                    filewrite = open("/version.lock", "w")
                     filewrite.write(version)
                     filewrite.close()
 
@@ -67,7 +67,7 @@ def pullupdate(define_version):
                     version = "keyboard interrupt"
 
             else:
-                version = open("version.lock", "r").read()
+                version = open("/version.lock", "r").read()
 
             if cv != version:
                 if version != "":
