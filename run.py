@@ -204,7 +204,7 @@ def update_kalel():
         print("Performing Update Please Wait")
         print("Cleaning up...")
         os.chdir('/opt/KalEl')
-        subprocess.Popen("rm /src/kalel.version", shell=True).wait()
+        subprocess.Popen("rm src/kalel.version", shell=True).wait()
         subprocess.Popen("git clean -fd", shell=True).wait()
         print("Updating, please wait...")
         subprocess.Popen("git pull", shell=True).wait()
