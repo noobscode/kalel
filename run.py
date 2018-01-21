@@ -82,7 +82,7 @@ def mainmenu():
         1.Traffic Spoof Attack # Force Redirect Network Traffic
         2.The Harvester        # Harvest Email, Vhosts, Subdomain names (more)
         3.Spoof Emails         # Send Fake Emails To And From Anyone
-        4.Not in use
+        4.Update KalEl
         5.Help/Tutorial
         6.Exit/Quit
         """)
@@ -100,7 +100,8 @@ def mainmenu():
             logo()
             import module.spoofmail.spoofmail
         elif ans=="4":
-            print('Not in use yet')
+            print('Updating')
+            update_kalel()
             #import module.ddos
         elif ans=="5":
             print("Visit out github at: https://github.com/noobscode/kalel")
@@ -109,6 +110,36 @@ def mainmenu():
             exit(1)
         elif ans !="":
             print("\n Not Valid Choice Try again")
+
+#Check if we are running Kali Linux
+def check_kali():
+    if os.path.isfile("/etc/apt/sources.list"):
+        kali = open("/etc/apt/sources.list", "r")
+        kalidata = kali.read()
+        if "kali" in kalidata:
+            return "Kali"
+        # if we aren't running kali
+        else:
+            return "Non-Kali"
+    else:
+        print("[!] Not running a Debian variant..")
+return "Non-Kali"
+
+def update_kalel():
+    kali = check_kali()
+    if kali == "Kali":
+        print_status("You are running Kali Linux")
+        time.sleep(2)
+
+    else:
+        print_info("Performing Update Please Wait")
+        print_info("Cleaning up...")
+        subprocess.Popen("git clean -fd", shell=True).wait()
+        print_info("Updating, please wait...")
+        subprocess.Popen("git pull", shell=True).wait()
+        print_status("Update finished, returning to main menu.")
+time.sleep(2)
+
 setup()
 mainmenu()
 #End
