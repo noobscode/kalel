@@ -208,6 +208,7 @@ def update_kalel():
         # Create a symbolic link for launching the toolkit via usr/bin
         subprocess.Popen("ln -s /opt/KalEl/run.py /opt/KalEl/kalel", shell=True).wait()
         subprocess.Popen("ln -s /opt/KalEl/kalelupdate.py /opt/KalEl/kalelupdate", shell=True).wait()
+        subprocess.Popen("rm /opt/KalEl/version.lock", shell=True).wait()
         print("Update finished, returning to main menu.")
         time.sleep(2)
 
