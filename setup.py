@@ -63,7 +63,7 @@ subprocess.call(['apt-get', 'install', 'tor', '-y' '-qq'])
 # Install dependencies
 pip.main(['install', 'stem'])
 
-subprocess.call(['ln', '-s' '/opt/KalEl/run.py', '/usr/bin/kalel'])
+subprocess.call(['ln', '-s', '/opt/KalEl/run.py', '/usr/bin/kalel'])
 subprocess.call(['chmod', '+x', '/usr/bin/kalel'])
 
 # Write setup to src/setupOK to let the tool know setup is complete
