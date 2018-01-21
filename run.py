@@ -130,12 +130,12 @@ def update_kalel():
     if kali == "Kali":
         print("You are running Kali Linux")
         time.sleep(2)
-        print_info("Performing Update Please Wait")
-        print_info("Cleaning up...")
+        print("Performing Update Please Wait")
+        print("Cleaning up...")
         subprocess.Popen("git clean -fd", shell=True).wait()
-        print_info("Updating, please wait...")
+        print("Updating, please wait...")
         subprocess.Popen("git pull", shell=True).wait()
-        print_status("Update finished, returning to main menu.")
+        print("Update finished, returning to main menu.")
         time.sleep(2)
 
 setup()
