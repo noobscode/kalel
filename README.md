@@ -10,7 +10,7 @@
 
     - Kal El Network Penetration Testing (KalEl NPT)
     - Created by: NoobsCode   
-    - Version: 0  There is a new update available!
+    - Version: 1.1  KalEl is up to date!
     - Github: https://www.Github.com/NoobsCode/KalEl
 
  KalEl is a neat tool for Network Stress Testing and Penetration Testing
