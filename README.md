@@ -9,14 +9,14 @@ __  ___      ___       __          _______  __
 |__|\__\ /__/     \__\ |_______|   |_______||_______|
 
 
-Kal-El is a neat tool for Network Stress Testing and Penetration Testing
+Kal El is a neat tool for Network Stress Testing and Penetration Testing
 This toolkit is still a work in progress and is a very early build.
 
 
        1.Traffic Spoof Attack # Force Redirect Network Traffic
        2.The Harvester        # Harvest Email, Vhosts, Subdomain names (more)
        3.Spoof Emails         # Send Fake Emails To And From Anyone
-       4.Not in use
+       4.Update KalEl         # Update The KalEl Toolkit
        5.Help/Tutorial
        6.Exit/Quit
 
