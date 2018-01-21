@@ -56,7 +56,7 @@ def pullupdate(define_version):
                 try:
 
                     url = (
-                        'https://raw.githubusercontent.com/noobscode/kalel/master/src/kalal.version')
+                        'https://raw.githubusercontent.com/noobscode/kalel/master/src/kalel.version')
                     version = urlopen(url).read().rstrip().decode('utf-8')
                     filewrite = open("version.lock", "w")
                     filewrite.write(version)
