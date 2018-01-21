@@ -135,7 +135,8 @@ def update_kalel():
         subprocess.Popen("git clean -fd", shell=True).wait()
         print("Updating, please wait...")
         subprocess.Popen("git pull", shell=True).wait()
-        import setup
+        # Create a symbolic link for launching the toolkit via usr/bin
+        subprocess.Popen("ln -s /opt/KalEl/run.py /opt/KalEl/kalel", shell=True).wait()
         print("Update finished, returning to main menu.")
         time.sleep(2)
 
