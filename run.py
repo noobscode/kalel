@@ -82,7 +82,7 @@ def mainmenu():
         1.Traffic Spoof Attack # Force Redirect Network Traffic
         2.The Harvester        # Harvest Email, Vhosts, Subdomain names (more)
         3.Spoof Emails         # Send Fake Emails To And From Anyone
-        4.Update KalEl
+        4.Update KalEl         # Update KalEl Toolkit
         5.Help/Tutorial
         6.Exit/Quit
         """)
