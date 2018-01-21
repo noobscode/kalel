@@ -43,7 +43,6 @@ def get_version():
     return define_version
 
 define_version = get_version()
-subprocess.Popen("rm version.lock", shell=True).wait()
 
 def pullupdate(define_version):
     cv = get_version()
