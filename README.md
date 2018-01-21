@@ -30,7 +30,7 @@ $ cd kalel/
 
 $ sudo python setup.py
 
-$ sudo python run.py
+$ sudo kalel
 
 Attack Vectors:
 -------------------
