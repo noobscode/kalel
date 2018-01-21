@@ -16,7 +16,7 @@ class bcolors:
     UNDERLINE = '\033[4m'
 
 def writetoconf():
-    with open("src/config.py", "a") as filewrite:
+    with open("/opt/KalEl/src/config.py", "a") as filewrite:
         filewrite.write("\n#[SPOOFMAIL]\n")
         filewrite.write("smtpserver")
         filewrite.write(" = ")

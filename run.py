@@ -16,7 +16,7 @@ class bcolors:
     UNDERLINE = '\033[4m'
 
 def setup():
-    if not os.path.isfile("src/setupOK"):
+    if not os.path.isfile("/opt/KalEl/src/setupOK"):
         print("You must run setup.py first\n")
         ans1 = raw_input("Would you like to run setup now?\n y/n: ")
         if ans1 == "y":
@@ -36,7 +36,7 @@ def logo():
 
 # initial user menu
 def agreement():
-    if not os.path.isfile("src/agreement"):
+    if not os.path.isfile("/opt/KalEl/src/agreement"):
         with open("LICENSE") as fileopen:
             for line in fileopen:
                 print((line.rstrip()))
@@ -53,7 +53,7 @@ def agreement():
             print(bcolors.OKGREEN)
             choice = raw_input("\nDo you agree to the terms of service [y/n]: ")
             if choice == "y":
-                with open("src/agreement", "w") as filewrite:
+                with open("/opt/KalEl/src/agreement", "w") as filewrite:
                     filewrite.write("user accepted")
                     print(bcolors.ENDC)
             else:
