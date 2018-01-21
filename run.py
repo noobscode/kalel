@@ -16,8 +16,8 @@ class bcolors:
     UNDERLINE = '\033[4m'
 
 if not os.geteuid()==0:
-    sys.exit("\nOnly root can run this script\nTry with $ sudo python setup.py")
-    
+    sys.exit("\nOnly root can run this script\nTry with $ sudo kalel")
+
 def setup():
     if not os.path.isfile("/opt/KalEl/src/setupOK"):
         print("You must run setup.py first\n")
