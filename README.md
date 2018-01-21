@@ -13,7 +13,7 @@ Kal El is a neat tool for Network Stress Testing and Penetration Testing
 This toolkit is still a work in progress and is a very early build.
 
 
-       1.Traffic Spoof Attack # Force Redirect Network Traffic
+       1.Traffic Spoof Attack # Force Redirect Network Traffic (DNS SPOOF)
        2.The Harvester        # Harvest Email, Vhosts, Subdomain names (more)
        3.Spoof Emails         # Send Fake Emails To And From Anyone
        4.Update KalEl         # Update The KalEl Toolkit

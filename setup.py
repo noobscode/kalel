@@ -32,11 +32,11 @@ else:
 subprocess.Popen("echo #!/bin/bash > /usr/bin/kalel", shell=True).wait()
 subprocess.Popen("echo cd /opt/KalEl >> /usr/bin/kalel", shell=True).wait()
 subprocess.Popen("echo exec python2 kalel $@ >> /usr/bin/kalel", shell=True).wait()
-subprocess.Popen("cp /opt/KalEl/kalelupdate /usr/bin/", shell=True).wait()
 subprocess.Popen("chmod +x /usr/bin/kalel", shell=True).wait()
 
 # Create a symbolic link for launching the toolkit via usr/bin
 subprocess.Popen("ln -s /opt/KalEl/run.py /opt/KalEl/kalel", shell=True).wait()
+subprocess.Popen("ln -s /opt/KalEl/kalelupdate.py /opt/KalEl/kalelupdate", shell=True).wait()
 
 # Write permission to run
 subprocess.call(['chmod', '+x', '/opt/KalEl/run.py'])

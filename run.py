@@ -79,7 +79,7 @@ def mainmenu():
     ans=True
     while ans:
         print ("""
-        1.Traffic Spoof Attack # Force Redirect Network Traffic
+        1.Traffic Spoof Attack # Force Redirect Network Traffic (DNS SPOOF)
         2.The Harvester        # Harvest Email, Vhosts, Subdomain names (more)
         3.Spoof Emails         # Send Fake Emails To And From Anyone
         4.Update KalEl         # Update The KalEl Toolkit
@@ -137,6 +137,7 @@ def update_kalel():
         subprocess.Popen("git pull", shell=True).wait()
         # Create a symbolic link for launching the toolkit via usr/bin
         subprocess.Popen("ln -s /opt/KalEl/run.py /opt/KalEl/kalel", shell=True).wait()
+        subprocess.Popen("ln -s /opt/KalEl/kalelupdate.py /opt/KalEl/kalelupdate", shell=True).wait()
         print("Update finished, returning to main menu.")
         time.sleep(2)
 
