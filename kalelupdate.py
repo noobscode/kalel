@@ -3,4 +3,4 @@
 import os
 import sys
 
-run.kalelupdate()
+from run import kalelupdate
