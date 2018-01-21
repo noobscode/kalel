@@ -123,7 +123,7 @@ def check_kali():
             return "Non-Kali"
     else:
         print("[!] Not running a Debian variant..")
-return "Non-Kali"
+        return "Non-Kali"
 
 def update_kalel():
     kali = check_kali()
