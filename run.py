@@ -36,6 +36,12 @@ def setup():
         else:
             exit(1)
 
+def kaldir():
+    return os.path.join(os.path.expanduser('~'), '.kal' + '/')
+
+
+# set the main directory for SET
+setdir = setdir()
 # Get the version number:
 def get_version():
     define_version = open("src/kalel.version", "r").read().rstrip()
@@ -52,13 +58,13 @@ def pullupdate(define_version):
         version = ""
 
         def pull_version():
-            if not os.path.isfile("/version.lock"):
+            if not os.path.isfile(kaldir + "/version.lock"):
                 try:
 
                     url = (
                         'https://raw.githubusercontent.com/noobscode/kalel/master/src/kalel.version')
                     version = urlopen(url).read().rstrip().decode('utf-8')
-                    filewrite = open("/version.lock", "w")
+                    filewrite = open(kaldir + "/version.lock", "w")
                     filewrite.write(version)
                     filewrite.close()
 
@@ -66,7 +72,7 @@ def pullupdate(define_version):
                     version = "keyboard interrupt"
 
             else:
-                version = open("/version.lock", "r").read()
+                version = open(kaldir + "/version.lock", "r").read()
 
             if cv != version:
                 if version != "":
