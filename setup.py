@@ -23,6 +23,7 @@ if os.path.isfile('/opt/KalEl/run.py'):
 print("[*] Copying KalEl into the /opt/KalEl directory...")
 cwdpath = os.getcwd()
 subprocess.Popen("cp -rf %s /opt/KalEl" % cwdpath, shell=True).wait()
+subprocess.Popen("mkdir /root/.kal", shell=True).wait()
 
 # Create a symbolic link for performing actions via /usr/bin
 subprocess.Popen("ln -s /opt/KalEl/run.py /opt/KalEl/kalel", shell=True).wait()
