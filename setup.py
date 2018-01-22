@@ -6,17 +6,19 @@ import sys
 import pip
 
 # Verify that the user is root
-if not os.geteuid()==0:
+if not os.geteuid() == 0:
     sys.exit("\nOnly root can run this script\nTry with $ sudo python setup.py")
 
 print("Setting up KalEl For You...")
 
-#Create and Copy files to installdir /opt/KalEl
+# Create and Copy files to installdir /opt/KalEl
 if os.path.isfile('/opt/KalEl/run.py'):
     reinstall = raw_input('KalEl is allready installed!\nDo you want to reinstall? (y/n): ')
     if reinstall == ('y'):
-        #subprocess.Popen("rm -fr /opt/KalEl", shell=True).wait()
-        import uninstall
+        # subprocess.Popen("rm -fr /opt/KalEl", shell=True).wait()
+        print('After removal is complete you have to run $ python setup.py again')
+        ok = raw_input('Press [ENTER] to continue...')
+        import uninstalled.isinstalled
     else:
         exit(1)
 
@@ -35,6 +37,7 @@ if os.path.isfile("/usr/bin/kalel"):
     subprocess.Popen("rm /usr/bin/kalel", shell=True).wait()
 else:
     pass
+
 # Link for main program
 subprocess.Popen("echo #!/bin/bash > /usr/bin/kalel", shell=True).wait()
 subprocess.Popen("echo cd /opt/KalEl >> /usr/bin/kalel", shell=True).wait()
@@ -65,7 +68,7 @@ if os.path.isfile("/opt/KalEl/src/setupOK"):
 if os.path.isfile("/opt/KalEl/src/config.py"):
     subprocess.call(['rm', '/opt/KalEl/src/config.py'])
 
-############# CHECK REQUIRED DEPENDENCIES ####################
+# CHECK REQUIRED DEPENDENCIES
 
 FNULL = open(os.devnull, 'w')
 
@@ -98,10 +101,10 @@ except OSError as e:
         raise
 
 # Install Tor bundle
-#subprocess.call(['apt-get', 'install', 'tor', '-y' '-qq'])
+# subprocess.call(['apt-get', 'install', 'tor', '-y' '-qq'])
 
 # Install dependencies
-#pip.main(['install', 'stem'])
+# pip.main(['install', 'stem'])
 
 # Write setup to src/setupOK to let the tool know setup is complete
 with open("/opt/KalEl/src/setupOK", "w") as filewrite:

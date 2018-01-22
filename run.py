@@ -12,6 +12,7 @@ except ImportError:
     from urllib import urlopen
 import multiprocessing
 
+
 class bcolors:
     HEADER = '\033[95m'
     OKBLUE = '\033[94m'
@@ -22,9 +23,11 @@ class bcolors:
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
 
+
 # Make sure Tool is run via sudo or by root
-if not os.geteuid()==0:
+if not os.geteuid() == 0:
     sys.exit("\nOnly root can run this script\nTry with $ sudo kalel")
+
 
 # Check if setup is complete
 def setup():
@@ -36,6 +39,7 @@ def setup():
         else:
             exit(1)
 
+
 def check_os():
     if os.name == "nt":
         operating_system = "windows"
@@ -43,18 +47,24 @@ def check_os():
         operating_system = "posix"
     return operating_system
 
+
 def kaldir():
     if check_os() == "posix":
         return os.path.join(os.path.expanduser('~'), '.kal' + '/')
 
+
 kaldir = kaldir()
+
+
 # Get the version number:
 def get_version():
     define_version = open("src/kalel.version", "r").read().rstrip()
     # define_version = '1.1.1'
     return define_version
 
+
 define_version = get_version()
+
 
 def pullupdate(define_version):
     cv = get_version()
@@ -105,6 +115,7 @@ def pullupdate(define_version):
         print(err)
         # pass
 
+
 def logo():
     print(bcolors.OKBLUE + """
     __  ___      ___       __          _______  __
@@ -118,6 +129,8 @@ def logo():
     - Created by:""" + bcolors.FAIL + """ NoobsCode """ + bcolors.OKBLUE + """ """ + bcolors.WARNING + """ """ + bcolors.OKBLUE + """
     - Version: """ + bcolors.OKGREEN + """%s""" % (define_version) + bcolors.WARNING + """ """), pullupdate(define_version)
     print("""    - Github: """ + bcolors.OKGREEN + """https://www.Github.com/NoobsCode/KalEl""" + bcolors.OKBLUE + """ """)
+
+
 # initial user menu
 def agreement():
     if not os.path.isfile("/opt/KalEl/src/agreement"):
@@ -144,17 +157,19 @@ def agreement():
                 print(bcolors.ENDC + "[!] Exiting Kal El, have a nice day." + bcolors.ENDC)
                 sys.exit()
 
-#Header information Intro text
+
+# Header information Intro text
 def intro():
     print(bcolors.HEADER + bcolors.BOLD + "\n Kal El is a neat tool for Network Stress Testing and Penetration Testing")
     print(" This toolkit is still a work in progress and is a very early build." + bcolors.ENDC)
+
 
 # Create the main menu
 def mainmenu():
     os.system('clear')
     agreement()
     os.system('clear')
-    ans=True
+    ans = True
     while ans:
         logo()
         intro()
@@ -166,33 +181,33 @@ def mainmenu():
         5.Help/Tutorial
         6.Exit/Quit
         """)
-        ans=raw_input("Choose Attack Vector: ")
-        if ans=="1":
+        ans = raw_input("Choose Attack Vector: ")
+        if ans == "1":
             os.system('clear')
             logo()
             import module.ettercap.spoof
-        elif ans=="2":
+        elif ans == "2":
             os.system('clear')
             logo()
             import module.harvester.prep
-        elif ans=="3":
+        elif ans == "3":
             os.system('clear')
             logo()
             import module.spoofmail.spoofmail
-        elif ans=="4":
+        elif ans == "4":
             print('Updating')
             update_kalel()
-            #import module.ddos
-        elif ans=="5":
+            # import module.ddos
+        elif ans == "5":
             print("Visit out github at: https://github.com/noobscode/kalel")
-        elif ans=="6":
+        elif ans == "6":
             print("\n Goodbye")
             exit(1)
-        elif ans !="":
+        elif ans != "":
             print("\n Not Valid Choice Try again")
 
 
-#Check if we are running Kali Linux
+# Check if we are running Kali Linux
 def check_kali():
     if os.path.isfile("/etc/apt/sources.list"):
         kali = open("/etc/apt/sources.list", "r")
@@ -205,6 +220,7 @@ def check_kali():
     else:
         print("[!] Not running a Debian variant..")
         return "Non-Kali"
+
 
 # KalEl Update
 def update_kalel():
@@ -224,7 +240,13 @@ def update_kalel():
         print("Update finished, returning to main menu.")
         time.sleep(2)
 
+
 # Run the program
-setup()
-mainmenu()
-#End
+try:
+    setup()
+    mainmenu()
+except KeyboardInterrupt:
+    print("\n\nDon't forget your cat!\n")
+finally:
+    sys.exit(1)
+# End
