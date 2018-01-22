@@ -206,7 +206,6 @@ def update_kalel():
         time.sleep(2)
         print("Performing Update Please Wait")
         print("Cleaning up...")
-        os.chdir('/opt/KalEl')
         subprocess.Popen("git clean -fd", shell=True).wait()
         print("Updating, please wait...")
         subprocess.Popen("git pull", shell=True).wait()
