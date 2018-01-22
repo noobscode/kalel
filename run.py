@@ -215,7 +215,7 @@ def update_kalel():
         subprocess.Popen("ln -s /opt/KalEl/run.py /opt/KalEl/kalel", shell=True).wait()
         subprocess.Popen("ln -s /opt/KalEl/kalelupdate.py /opt/KalEl/kalelupdate", shell=True).wait()
         print("Update finished, returning to main menu.")
-        subprocess.Popen("rm /root/.kal/*", shell=True).wait()
+        subprocess.Popen("rm /root/.kal/ *", shell=True).wait()
         time.sleep(2)
 
 # Run the program
