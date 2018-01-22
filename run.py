@@ -151,7 +151,6 @@ def intro():
 
 # Create the main menu
 def mainmenu():
-    subprocess.Popen("rm /root/.kal/version.lock", shell=True).wait()
     os.system('clear')
     agreement()
     os.system('clear')
