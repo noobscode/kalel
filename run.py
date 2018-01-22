@@ -39,9 +39,7 @@ def setup():
 def kaldir():
     return os.path.join(os.path.expanduser('~'), '.kal' + '/')
 
-
-# set the main directory for SET
-setdir = setdir()
+kaldir = kaldir()
 # Get the version number:
 def get_version():
     define_version = open("src/kalel.version", "r").read().rstrip()
