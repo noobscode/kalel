@@ -36,8 +36,16 @@ def setup():
         else:
             exit(1)
 
+def check_os():
+    if os.name == "nt":
+        operating_system = "windows"
+    if os.name == "posix":
+        operating_system = "posix"
+    return operating_system
+
 def kaldir():
-    return os.path.join(os.path.expanduser('~'), '.kal')
+    if check_os() == "posix":
+        return os.path.join(os.path.expanduser('~'), '.kal' + '/')
 
 kaldir = kaldir()
 # Get the version number:
