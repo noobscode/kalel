@@ -37,7 +37,7 @@ def setup():
             exit(1)
 
 def kaldir():
-    os.path.join(os.path.expanduser('~'), '.kal')
+    return os.path.join(os.path.expanduser('~'), '.kal')
 
 kaldir = kaldir()
 # Get the version number:
