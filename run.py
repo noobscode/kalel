@@ -93,8 +93,8 @@ def pullupdate(define_version):
             if cv != version:
                 if version != "":
                     print("There is a new update available!")
-            else:
-                print("KalEl is up to date!")
+                else:
+                    print("KalEl is up to date!")
 
         # Pull the version from out git repo
         p = multiprocessing.Process(target=pull_version)
@@ -118,11 +118,11 @@ def pullupdate(define_version):
 
 # Tor Section
 def getip():
-    ipadd = open("module/tor/tor.ip", "r").read().rstrip()
-    return ipadd
+    torip = open("module/tor/tor.ip", "r").read().rstrip()
+    return torip
 
 
-ipadd = getip()
+torip = getip()
 
 
 def logo():
@@ -137,7 +137,7 @@ def logo():
     - Kal El Network Penetration Testing (""" + bcolors.WARNING + """KalEl NPT""" + bcolors.OKBLUE + """)
     - Created by:""" + bcolors.FAIL + """ NoobsCode """ + bcolors.OKBLUE + """ """ + bcolors.WARNING + """ """ + bcolors.OKBLUE + """
     - Version: """ + bcolors.OKGREEN + """%s""" % (define_version) + bcolors.WARNING + """ """), pullupdate(define_version)
-    print('    - Tor IP: %s' % (ipadd))
+    print('    - Tor IP: %s' % (torip))
     print("""    - Github: """ + bcolors.OKGREEN + """https://www.Github.com/NoobsCode/KalEl""" + bcolors.OKBLUE + """ """)
 
 
@@ -166,6 +166,10 @@ def agreement():
             else:
                 print(bcolors.ENDC + "[!] Exiting Kal El, have a nice day." + bcolors.ENDC)
                 sys.exit()
+
+
+def goon():
+    go = raw_input('Press [ENTER] to continue...')
 
 
 # Header information Intro text
@@ -206,7 +210,6 @@ def mainmenu():
             logo()
             import module.spoofmail.spoofmail
         elif ans == "4":
-            #os.chdir('module/tor/')
             os.system('module/tor/tor.py')
             time.sleep(2)
         elif ans == "5":
@@ -214,9 +217,11 @@ def mainmenu():
             update_kalel()
         elif ans == "6":
             print("Visit out github at: https://github.com/noobscode/kalel")
+            goon()
         elif ans == "7":
             print("\n Goodbye")
-            exit(1)
+            cleanup()
+            sys.exit(1)
         elif ans != "":
             print("\n Not Valid Choice Try again")
 
@@ -256,6 +261,17 @@ def update_kalel():
         time.sleep(2)
 
 
+def cleanup():
+    try:
+        if os.path.isfile(kaldir + '/version.lock'):
+            os.remove(kaldir + '/version.lock')
+        if torip != '0':
+            print('NB: Tor is still running!')
+            print('You can shut it down manually by typing\n$ sudo /opt/KalEl/module/tor/tor.py stop')
+    except:
+        pass
+
+
 # Run the program
 try:
     setup()
@@ -263,5 +279,6 @@ try:
 except KeyboardInterrupt:
     print("\n\nDon't forget your cat!\n")
 finally:
+    cleanup()
     sys.exit(1)
 # End

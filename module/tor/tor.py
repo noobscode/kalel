@@ -146,7 +146,7 @@ def stop_torghost():
     """
     os.system(IpFlush)
     f = open('module/tor/tor.ip', 'w')
-    f.write('0')
+    f.write('VPN Disabled')
     f.close()
 
     print bcolors.GREEN+"[done]"+bcolors.ENDC
