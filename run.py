@@ -116,6 +116,15 @@ def pullupdate(define_version):
         # pass
 
 
+# Tor Section
+def getip():
+    ipadd = open("module/tor/tor.ip", "r").read().rstrip()
+    return ipadd
+
+
+ipadd = getip()
+
+
 def logo():
     print(bcolors.OKBLUE + """
     __  ___      ___       __          _______  __
@@ -128,6 +137,7 @@ def logo():
     - Kal El Network Penetration Testing (""" + bcolors.WARNING + """KalEl NPT""" + bcolors.OKBLUE + """)
     - Created by:""" + bcolors.FAIL + """ NoobsCode """ + bcolors.OKBLUE + """ """ + bcolors.WARNING + """ """ + bcolors.OKBLUE + """
     - Version: """ + bcolors.OKGREEN + """%s""" % (define_version) + bcolors.WARNING + """ """), pullupdate(define_version)
+    print('    - Tor IP: %s' % (ipadd))
     print("""    - Github: """ + bcolors.OKGREEN + """https://www.Github.com/NoobsCode/KalEl""" + bcolors.OKBLUE + """ """)
 
 
@@ -177,9 +187,10 @@ def mainmenu():
         1.Traffic Spoof Attack # Force Redirect Network Traffic (DNS SPOOF)
         2.The Harvester        # Harvest Email, Vhosts, Subdomain names (more)
         3.Spoof Emails         # Send Fake Emails To And From Anyone
-        4.Update KalEl         # Update The KalEl Toolkit
-        5.Help/Tutorial
-        6.Exit/Quit
+        4.Activate Tor(VPN)
+        5.Update KalEl         # Update The KalEl Toolkit
+        6.Help/Tutorial
+        7.Exit/Quit
         """)
         ans = raw_input("Choose Attack Vector: ")
         if ans == "1":
@@ -195,12 +206,15 @@ def mainmenu():
             logo()
             import module.spoofmail.spoofmail
         elif ans == "4":
+            #os.chdir('module/tor/')
+            os.system('module/tor/tor.py')
+            time.sleep(2)
+        elif ans == "5":
             print('Updating')
             update_kalel()
-            # import module.ddos
-        elif ans == "5":
-            print("Visit out github at: https://github.com/noobscode/kalel")
         elif ans == "6":
+            print("Visit out github at: https://github.com/noobscode/kalel")
+        elif ans == "7":
             print("\n Goodbye")
             exit(1)
         elif ans != "":

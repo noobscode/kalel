@@ -6,6 +6,7 @@ __pycache__/
 etter.dns
 *config.py
 *setupOK
+*sslstrip.log
 # C extensions
 *.so
 
