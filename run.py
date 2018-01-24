@@ -48,12 +48,7 @@ def check_os():
     return operating_system
 
 
-def kaldir():
-    if check_os() == "posix":
-        return os.path.join(os.path.expanduser('~'), '.kal' + '/')
-
-
-kaldir = kaldir()
+kaldir = '/opt/KalEl/.kal/'
 
 
 # Get the version number:

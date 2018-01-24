@@ -27,6 +27,11 @@ This toolkit is still a work in progress and is a very early build.
 
 Choose Attack Vector: $
 ```
+Supported OS
+-------------------
+Tested on Kali Linux and Ubundu
+
+
 How to install
 -------------------
 $ git clone https://github.com/noobscode/KalEl
