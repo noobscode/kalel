@@ -288,7 +288,7 @@ def update_kalel():
         subprocess.Popen("ln -s /opt/KalEl/kalelupdate.py /opt/KalEl/kalelupdate", shell=True).wait()
         print("Update finished, returning to main menu.")
         goon()
-        subprocess.call(['kalel'])
+        os.system('kalel')
         time.sleep(2)
 
 
