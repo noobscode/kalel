@@ -27,15 +27,21 @@ This toolkit is still a work in progress and is a very early build.
 
 Choose Attack Vector: $
 ```
-How to install & Run:
+How to install
 -------------------
 $ git clone https://github.com/noobscode/KalEl
 
 $ cd kalel/
 
-$ sudo python setup.py
+$ sudo python setup.py install
 
+How to Run KalEl
+-------------------
 $ sudo kalel
+
+How to Run KalEl VPN outside the Toolkit
+-------------------
+$ sudo kalelvpn start / stop / switch
 
 How to update:
 -------------------
@@ -43,7 +49,7 @@ $ sudo kalelupdate
 
 How to uninstall:
 -------------------
-$ sudo kaleluninstall
+$ sudo setup.py uninstall
 
 
 Attack Vectors:

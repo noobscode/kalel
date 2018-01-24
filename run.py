@@ -35,7 +35,7 @@ def setup():
         print("You must run setup.py first\n")
         ans1 = raw_input("Would you like to run setup now?\n y/n: ")
         if ans1 == "y":
-            import setup
+            subprocess.call(['setup.py', 'install'])
         else:
             exit(1)
 
@@ -205,7 +205,7 @@ def mainmenu():
         elif ans == "3":
             os.system('clear')
             logo()
-            import module.spoofmail.spoofmail
+            from module.spoofmail import spoofemail
         elif ans == "4":
             submenu_tor()
         elif ans == "5":
@@ -298,7 +298,7 @@ def cleanup():
             os.remove(kaldir + '/version.lock')
         if torip != 'VPN Disabled':
             print('NB: Tor is still running!')
-            print('You can shut it down manually by typing\n$ sudo /opt/KalEl/module/tor/tor.py stop')
+            print('You can shut it down manually by typing\n$ sudo kalelvpn stop')
     except:
         pass
 
