@@ -48,7 +48,7 @@ def check_os():
     return operating_system
 
 
-kaldir = '/opt/KalEl/.kal/'
+kaldir = '/opt/KalEl/.kal'
 
 
 # Get the version number:
