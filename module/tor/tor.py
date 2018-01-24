@@ -181,7 +181,7 @@ running = tor()
 
 
 def torstatus():
-    if running != '0':
+    if running != 'VPN Disabled':
         print('is running')
         stoptor = raw_input('Stop Tor VPN?\n y/n: ')
         if stoptor == 'y':

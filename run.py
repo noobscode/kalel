@@ -91,10 +91,9 @@ def pullupdate(define_version):
                 version = open(kaldir + "/version.lock", "r").read()
 
             if cv != version:
-                if version != "":
-                    print("There is a new update available!")
-                else:
-                    print("KalEl is up to date!")
+                print("There is a new update available!")
+            else:
+                print("KalEl is up to date!")
 
         # Pull the version from out git repo
         p = multiprocessing.Process(target=pull_version)
@@ -220,7 +219,6 @@ def mainmenu():
             goon()
         elif ans == "7":
             print("\n Goodbye")
-            cleanup()
             sys.exit(1)
         elif ans != "":
             print("\n Not Valid Choice Try again")
@@ -247,6 +245,14 @@ def update_kalel():
     if kali == "Kali":
         print("You are running Kali Linux")
         time.sleep(2)
+        if os.getcwd() == '/opt/KalEl/':
+            pass
+        else:
+            print(bcolors.FAIL + '\nYou are not in KalEl Directory!\n' + bcolors.ENDC)
+            print(bcolors.WARNING + 'Please run KalEl from /opt/KalEl/\n' + bcolors.ENDC)
+            time.sleep(2)
+            mainmenu()
+
         print("Performing Update Please Wait")
         print("Cleaning up...")
         subprocess.Popen("git clean -fd", shell=True).wait()
@@ -265,7 +271,7 @@ def cleanup():
     try:
         if os.path.isfile(kaldir + '/version.lock'):
             os.remove(kaldir + '/version.lock')
-        if torip != '0':
+        if torip != 'VPN Disabled':
             print('NB: Tor is still running!')
             print('You can shut it down manually by typing\n$ sudo /opt/KalEl/module/tor/tor.py stop')
     except:
