@@ -28,12 +28,16 @@ def isinstalled():
         exit(1)
 
 
-try:
-    isnotinstalled()
-    isinstalled()
-except KeyboardInterrupt:
-    print("\n\nDon't forget your cat!\n")
-finally:
-    sys.exit(1)
+def remove_kalel():
+    try:
+        isnotinstalled()
+        isinstalled()
+    except KeyboardInterrupt:
+        print("\n\nDon't forget your cat!\n")
+    finally:
+        sys.exit(1)
+
+
+remove_kalel()
 
 # End

@@ -18,7 +18,7 @@ if os.path.isfile('/opt/KalEl/run.py'):
         # subprocess.Popen("rm -fr /opt/KalEl", shell=True).wait()
         print('After removal is complete you have to run $ python setup.py again')
         ok = raw_input('Press [ENTER] to continue...')
-        import uninstalled.isinstalled
+        import uninstall.remove_kalel
     else:
         exit(1)
 
