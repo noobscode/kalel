@@ -112,7 +112,7 @@ def pullupdate(define_version):
 
     except Exception as err:
         print(err)
-        # pass
+        pass
 
 
 # Tor Section
