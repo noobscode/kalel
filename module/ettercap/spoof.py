@@ -17,7 +17,7 @@ class bcolors:
 
 def spoofstart():
     # Verify System and clean up afterlast usage
-    if os.path.isfile("src/etter.dns")
+    if os.path.isfile('src/etter.dns')
         subprocess.call(['rm', 'src/etter.dns'])
     else:
         pass
