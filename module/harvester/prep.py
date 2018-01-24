@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 
 import os
-import subprocess
 
 
 class bcolors:
@@ -29,6 +28,7 @@ def harvester():
     os.system('module/harvester/engine.py -d %s -b all' % domain)
 
     raw_input('Press [ENTER] to go to main menu')
+    os.system('kalel')
 
 
 try:
@@ -36,4 +36,4 @@ try:
 except KeyboardInterrupt:
     print("\n\nDon't forget your cat!\n")
 finally:
-    subprocess.call(['kalel'])
+    os.system('kalel')
