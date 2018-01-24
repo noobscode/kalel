@@ -245,7 +245,7 @@ def update_kalel():
     if kali == "Kali":
         print("You are running Kali Linux")
         time.sleep(2)
-        if os.getcwd() == '/opt/KalEl/':
+        if os.getcwd() == '/opt/KalEl':
             pass
         else:
             print(bcolors.FAIL + '\nYou are not in KalEl Directory!\n' + bcolors.ENDC)
