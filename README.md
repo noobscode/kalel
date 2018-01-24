@@ -51,6 +51,9 @@ How to uninstall:
 -------------------
 $ sudo setup.py uninstall
 
+Extra:
+-------------------
+$ sudo python setup.py install / reinstall / uninstall
 
 Attack Vectors:
 -------------------
