@@ -33,8 +33,7 @@ def install():
     print("[*] Copying KalEl into the /opt/KalEl directory...")
     cwdpath = os.getcwd()
     subprocess.Popen("cp -rf %s /opt/KalEl" % cwdpath, shell=True).wait()
-    subprocess.Popen("mkdir /opt/KalEl/.kal/", shell=True).wait()
-    subprocess.Popen("touch /opt/KalEl/.kal/version.lock", shell=True).wait()
+    subprocess.Popen("mkdir /opt/KalEl/.kal", shell=True).wait()
 
     # Create a symbolic link for performing actions via /usr/bin
     subprocess.Popen("ln -s /opt/KalEl/run.py /opt/KalEl/kalel", shell=True).wait()
@@ -60,13 +59,7 @@ def install():
     subprocess.Popen("echo exec python2 kalelvpn $@ >> /usr/bin/kalelvpn", shell=True).wait()
     subprocess.Popen("chmod +x /usr/bin/kalelvpn", shell=True).wait()
 
-    # Write permission to run
-    subprocess.Popen(['chmod', '+x', '/opt/KalEl/run.py'])
-    subprocess.Popen(['chmod', '+x', '/opt/KalEl/module/tor/tor.py'])
-    subprocess.Popen(['chmod', '+x', '/opt/KalEl/module/ettercap/spoof.py'])
-    subprocess.Popen(['chmod', '+x', '/opt/KalEl/module/harvester/prep.py'])
-    subprocess.Popen(['chmod', '+x', '/opt/KalEl/module/harvester/engine.py'])
-    subprocess.Popen(['chmod', '+x', '/opt/KalEl/module/spoofmail/spoofmail.py'])
+    fixpermissions()
 
     # Check if config files is present, if they are we will remove them
     if os.path.isfile("/opt/KalEl/src/setupOK"):
@@ -130,6 +123,15 @@ def install():
 
     print("[*] We are now finished! To run KalEl, type kalel...")
     exit(1)
+
+def fixpermissions():
+    # Write permission to run
+    subprocess.Popen(['chmod', '+x', '/opt/KalEl/run.py'])
+    subprocess.Popen(['chmod', '+x', '/opt/KalEl/module/tor/tor.py'])
+    subprocess.Popen(['chmod', '+x', '/opt/KalEl/module/ettercap/spoof.py'])
+    subprocess.Popen(['chmod', '+x', '/opt/KalEl/module/harvester/prep.py'])
+    subprocess.Popen(['chmod', '+x', '/opt/KalEl/module/harvester/engine.py'])
+    subprocess.Popen(['chmod', '+x', '/opt/KalEl/module/spoofmail/spoofmail.py'])
 
 
 def uninstall():

@@ -3,8 +3,6 @@
 import os
 import time
 import subprocess
-from pathlib2 import Path
-
 
 class bcolors:
     HEADER = '\033[95m'
@@ -19,8 +17,7 @@ class bcolors:
 
 def spoofstart():
     # Verify System and clean up afterlast usage
-    file1 = Path("src/etter.dns")
-    if file1.is_file():
+    if os.path.isfile("src/etter.dns")
         subprocess.call(['rm', 'src/etter.dns'])
     else:
         pass

@@ -272,6 +272,8 @@ def update_kalel():
     print("Updating, please wait...")
     subprocess.Popen("git fetch origin master", shell=True).wait()
     subprocess.Popen("git reset --hard FETCH_HEAD", shell=True).wait()
+    subprocess.Popen("mkdir /opt/KalEl/.kal", shell=True).wait()
+    from setup import fixpermissions
     cleanup()
 
     # Create a symbolic link for launching the toolkit via usr/bin
