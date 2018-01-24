@@ -107,6 +107,7 @@ def spoofstart():
 
 try:
     spoofstart()
+    subprocess.call(['kalel'])
 except KeyboardInterrupt:
     print("\n\nDon't forget your cat!\n")
 finally:
