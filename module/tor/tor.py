@@ -38,7 +38,7 @@ def t():
 
 
 def shutdown():
-    print('bcolors.BGRED + bcolors.WHITE + t() + "[info] shutting down torghost" + bcolors.ENDC +"\n\n"')
+    print('bcolors.BGRED + bcolors.WHITE + t() + "[info] shutting down kalelvpn" + bcolors.ENDC +"\n\n"')
     sys.exit()
 
 
@@ -61,7 +61,7 @@ signal.signal(signal.SIGINT, sigint_handler)
 
 TorrcCfgString = """
 
-##/////ADDED BY TORGHOST ///
+##/////ADDED BY kalelvpn ///
 VirtualAddrNetwork 10.0.0.0/10
 AutomapHostsOnResolve 1
 TransPort 9040
@@ -77,7 +77,7 @@ Torrc = "/etc/tor/torrc"
 resolv = "/etc/resolv.conf"
 
 
-def start_torghost():
+def start_kalelvpn():
 
     if TorrcCfgString in open(Torrc).read():
         print t()+" Torrc file already configured"
@@ -132,8 +132,8 @@ def start_torghost():
     f.close()
 
 
-def stop_torghost():
-    print bcolors.RED+t()+"STOPPING torghost"+bcolors.ENDC
+def stop_kalelvpn():
+    print bcolors.RED+t()+"STOPPING kalelvpn"+bcolors.ENDC
     print t()+" Flushing iptables, resetting to default",
     IpFlush = """
     iptables -P INPUT ACCEPT
@@ -185,12 +185,12 @@ def torstatus():
         print('is running')
         stoptor = raw_input('Stop Tor VPN?\n y/n: ')
         if stoptor == 'y':
-            stop_torghost()
+            stop_kalelvpn()
     else:
         print('not running')
         starttor = raw_input('Start Tor VPN?\n y/n: ')
         if starttor == 'y':
-            start_torghost()
+            start_kalelvpn()
 
 
 arg = sys.argv[1:]
@@ -200,10 +200,10 @@ if len(arg) != 1:
     torstatus()
 elif sys.argv[1] == "start":
     logo()
-    start_torghost()
+    start_kalelvpn()
 elif sys.argv[1] == "stop":
     logo()
-    stop_torghost()
+    stop_kalelvpn()
 elif sys.argv[1] == "switch":
     switch_tor()
 else:

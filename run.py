@@ -71,8 +71,6 @@ def pullupdate(define_version):
 
     # pull version
     try:
-        version = ""
-
         def pull_version():
             if not os.path.isfile(kaldir + "/version.lock"):
                 try:
@@ -201,11 +199,11 @@ def mainmenu():
         elif ans == "2":
             os.system('clear')
             logo()
-            import module.harvester.prep
+            os.system('module/harvester/prep.py')
         elif ans == "3":
             os.system('clear')
             logo()
-            from module.spoofmail import spoofemail
+            os.system('module/spoofmail/spoofmail.py')
         elif ans == "4":
             submenu_tor()
         elif ans == "5":

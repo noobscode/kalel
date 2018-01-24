@@ -1,9 +1,8 @@
 #!/usr/bin/env python
 
 import os
-import time
 import subprocess
-import sys
+
 
 class bcolors:
     HEADER = '\033[95m'
@@ -15,18 +14,26 @@ class bcolors:
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
 
-print bcolors.OKBLUE + """
-The Harvester is a tool for gathering e-mail accounts,
-subdomain names, virtual hosts, open ports/ banners,
-and employee names from different public sources
-(search engines and servers).
 
-- Inspired by edge-security author Christian Martorella
-- https://github.com/laramies/theHarvester \n""" + bcolors.ENDC
+def harvester():
+    print bcolors.OKBLUE + """
+    The Harvester is a tool for gathering e-mail accounts,
+    subdomain names, virtual hosts, open ports/ banners,
+    and employee names from different public sources
+    (search engines and servers).
 
-domain = raw_input('Domain to harvest from\nDomain: ')
-os.system('module/harvester/engine.py -d %s -b all' % domain)
+    - Inspired by edge-security Author: Christian Martorella
+    - https://github.com/laramies/theHarvester \n""" + bcolors.ENDC
 
-backtomen = raw_input('Press [ENTER] to go to main menu')
-if backtomen != (''):
-    mainmenu()
+    domain = raw_input('Domain to harvest from\nDomain: ')
+    os.system('module/harvester/engine.py -d %s -b all' % domain)
+
+    raw_input('Press [ENTER] to go to main menu')
+
+
+try:
+    harvester()
+except KeyboardInterrupt:
+    print("\n\nDon't forget your cat!\n")
+finally:
+    subprocess.call(['kalel'])
