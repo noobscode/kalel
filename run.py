@@ -258,33 +258,29 @@ def check_kali():
 
 # KalEl Update
 def update_kalel():
-    kali = check_kali()
-    if kali == "Kali":
-        print("You are running Kali Linux")
+    if os.getcwd() == '/opt/KalEl':
+        pass
+    else:
+        print(bcolors.FAIL + '\nYou are not in KalEl Directory!\n' + bcolors.ENDC)
+        print(bcolors.WARNING + 'Please run KalEl from /opt/KalEl/\n' + bcolors.ENDC)
         time.sleep(2)
-        if os.getcwd() == '/opt/KalEl':
-            pass
-        else:
-            print(bcolors.FAIL + '\nYou are not in KalEl Directory!\n' + bcolors.ENDC)
-            print(bcolors.WARNING + 'Please run KalEl from /opt/KalEl/\n' + bcolors.ENDC)
-            time.sleep(2)
-            mainmenu()
+        mainmenu()
 
-        print("Performing Update Please Wait")
-        print("Cleaning up...")
-        subprocess.Popen("git clean -fd", shell=True).wait()
-        print("Updating, please wait...")
-        subprocess.Popen("git fetch origin master", shell=True).wait()
-        subprocess.Popen("git reset --hard FETCH_HEAD", shell=True).wait()
-        cleanup()
+    print("Performing Update Please Wait")
+    print("Cleaning up...")
+    subprocess.Popen("git clean -fd", shell=True).wait()
+    print("Updating, please wait...")
+    subprocess.Popen("git fetch origin master", shell=True).wait()
+    subprocess.Popen("git reset --hard FETCH_HEAD", shell=True).wait()
+    cleanup()
 
-        # Create a symbolic link for launching the toolkit via usr/bin
-        subprocess.Popen("ln -s /opt/KalEl/run.py /opt/KalEl/kalel", shell=True).wait()
-        subprocess.Popen("ln -s /opt/KalEl/kalelupdate.py /opt/KalEl/kalelupdate", shell=True).wait()
-        print("Update finished, returning to main menu.")
-        goon()
-        os.system('kalel')
-        time.sleep(2)
+    # Create a symbolic link for launching the toolkit via usr/bin
+    subprocess.Popen("ln -s /opt/KalEl/run.py /opt/KalEl/kalel", shell=True).wait()
+    subprocess.Popen("ln -s /opt/KalEl/kalelupdate.py /opt/KalEl/kalelupdate", shell=True).wait()
+    print("Update finished, returning to main menu.")
+    goon()
+    os.system('kalel')
+    time.sleep(2)
 
 
 def cleanup():
