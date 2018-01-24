@@ -141,6 +141,7 @@ def uninstall():
         print('Removing')
         subprocess.Popen("rm /usr/bin/kalel*", shell=True).wait()
         subprocess.Popen("cd ..;rm -fr /opt/KalEl", shell=True).wait()
+        subprocess.Popen("rm -fr /root/.kal", shell=True).wait()
         print('Done! Bye KalEl :()')
         time.sleep(2)
         exit(1)
