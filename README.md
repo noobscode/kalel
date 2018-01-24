@@ -1,27 +1,29 @@
 # Network Stress Test and Penetration Testing Toolkit
 # Author: NoobsCode
 ```
-    __  ___      ___       __          _______  __
-   |  |/  /     /   \     |  |        |   ____||  |
-   |  '  /     /  ^  \    |  |        |  |__   |  |
-   |    <     /  /_\  \   |  |        |   __|  |  |
-   |  .  \   /  _____  \  |  `----.   |  |____ |  `----.
-   |__|\__\ /__/     \__\ |_______|   |_______||_______|
+ __  ___      ___       __          _______  __
+|  |/  /     /   \     |  |        |   ____||  |
+|  '  /     /  ^  \    |  |        |  |__   |  |
+|    <     /  /_\  \   |  |        |   __|  |  |
+|  .  \   /  _____  \  |  `----.   |  |____ |  `----.
+|__|\__\ /__/     \__\ |_______|   |_______||_______|
 
-    - Kal El Network Penetration Testing (KalEl NPT)
-    - Created by: NoobsCode   
-    - Version: 1.1  KalEl is up to date!
-    - Github: https://www.Github.com/NoobsCode/KalEl
+- Kal El Network Penetration Testing (KalEl NPT)
+- Created by: NoobsCode   
+- Version: 2.1  KalEl is up to date!
+- Tor Active IP: 77.247.181.162
+- Github: https://www.Github.com/NoobsCode/KalEl
 
- KalEl is a neat tool for Network Stress Testing and Penetration Testing
- This toolkit is still a work in progress and is a very early build.
+Kal El is a neat tool for Network Stress Testing and Penetration Testing
+This toolkit is still a work in progress and is a very early build.
 
-        1.Traffic Spoof Attack # Force Redirect Network Traffic (DNS SPOOF)
-        2.The Harvester        # Harvest Email, Vhosts, Subdomain names (more)
-        3.Spoof Emails         # Send Fake Emails To And From Anyone
-        4.Update KalEl         # Update The KalEl Toolkit
-        5.Help/Tutorial
-        6.Exit/Quit
+    1.Traffic Spoof Attack # Force Redirect Network Traffic (DNS SPOOF)
+    2.The Harvester        # Harvest Email, Vhosts, Subdomain names (more)
+    3.Spoof Emails         # Send Fake Emails To And From Anyone
+    4.Activate Tor(VPN)
+    5.Update KalEl         # Update The KalEl Toolkit
+    6.Help/Tutorial
+    7.Exit/Quit
 
 Choose Attack Vector: $
 ```
