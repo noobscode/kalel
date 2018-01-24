@@ -195,7 +195,7 @@ def mainmenu():
         if ans == "1":
             os.system('clear')
             logo()
-            import module.ettercap.spoof
+            os.system('module/ettercap/spoof.py')
         elif ans == "2":
             os.system('clear')
             logo()
@@ -291,13 +291,12 @@ def update_kalel():
 
 
 def cleanup():
-    try:
-        if os.path.isfile(kaldir + '/version.lock'):
-            os.remove(kaldir + '/version.lock')
-        if torip != 'VPN Disabled':
-            print('NB: Tor is still running!')
-            print('You can shut it down manually by typing\n$ sudo kalelvpn stop')
-    except:
+    if os.path.isfile(kaldir + '/version.lock'):
+        os.remove(kaldir + '/version.lock')
+    if torip != 'VPN Disabled':
+        print('NB: Tor is still running!')
+        print('You can shut it down manually by typing\n$ sudo kalelvpn stop')
+    else:
         pass
 
 

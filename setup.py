@@ -67,9 +67,11 @@ def install():
 
     # Write permission to run
     subprocess.call(['chmod', '+x', '/opt/KalEl/run.py'])
-    subprocess.call(['chmod', '+x', '/opt/KalEl/uninstall.py'])
     subprocess.call(['chmod', '+x', '/opt/KalEl/module/tor/tor.py'])
+    subprocess.call(['chmod', '+x', '/opt/KalEl/module/ettercap/spoof.py'])
+    subprocess.call(['chmod', '+x', '/opt/KalEl/module/harvester/prep.py'])
     subprocess.call(['chmod', '+x', '/opt/KalEl/module/harvester/engine.py'])
+    subprocess.call(['chmod', '+x', '/opt/KalEl/module/spoofmail/spoofmail.py'])
 
     # Check if config files is present, if they are we will remove them
     if os.path.isfile("/opt/KalEl/src/setupOK"):
