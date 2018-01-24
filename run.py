@@ -76,7 +76,6 @@ def pullupdate(define_version):
         def pull_version():
             if not os.path.isfile(kaldir + "/version.lock"):
                 try:
-
                     url = (
                         'https://raw.githubusercontent.com/noobscode/kalel/master/src/kalel.version')
                     version = urlopen(url).read().rstrip().decode('utf-8')
@@ -86,7 +85,6 @@ def pullupdate(define_version):
 
                 except KeyboardInterrupt:
                     version = "keyboard interrupt"
-
             else:
                 version = open(kaldir + "/version.lock", "r").read()
 
@@ -168,7 +166,7 @@ def agreement():
 
 
 def goon():
-    go = raw_input('Press [ENTER] to continue...')
+    raw_input('Press [ENTER] to continue...')
 
 
 # Header information Intro text
@@ -209,8 +207,7 @@ def mainmenu():
             logo()
             import module.spoofmail.spoofmail
         elif ans == "4":
-            os.system('module/tor/tor.py')
-            time.sleep(2)
+            submenu_tor()
         elif ans == "5":
             print('Updating')
             update_kalel()
@@ -220,6 +217,33 @@ def mainmenu():
         elif ans == "7":
             print("\n Goodbye")
             sys.exit(1)
+        elif ans != "":
+            print("\n Not Valid Choice Try again")
+
+
+# Create the submenu
+def submenu_tor():
+    os.system('clear')
+    ans = True
+    while ans:
+        logo()
+        intro()
+        print ("""
+        1.Start TOR VPN        # Start TOR VPN
+        2.Stop TOR VPN         # Stop TOR VPN
+        3.Switch IP (Renew)    # Request new IP address
+
+        4.Back to main menu
+        """)
+        ans = raw_input("Choose Attack Vector: ")
+        if ans == "1":
+            subprocess.call(['kalelvpn', 'start'])
+        elif ans == "2":
+            subprocess.call(['kalelvpn', 'stop'])
+        elif ans == "3":
+            subprocess.call(['kalelvpn', 'switch'])
+        elif ans == "4":
+            mainmenu()
         elif ans != "":
             print("\n Not Valid Choice Try again")
 

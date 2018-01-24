@@ -31,6 +31,8 @@ subprocess.Popen("mkdir /root/.kal", shell=True).wait()
 subprocess.Popen("ln -s /opt/KalEl/run.py /opt/KalEl/kalel", shell=True).wait()
 subprocess.Popen("ln -s /opt/KalEl/kalelupdate.py /opt/KalEl/kalelupdate", shell=True).wait()
 subprocess.Popen("ln -s /opt/KalEl/uninstall.py /opt/KalEl/kaleluninstall", shell=True).wait()
+subprocess.Popen("ln -s /opt/KalEl/module/tor/tor.py /opt/KalEl/kalelvpn", shell=True).wait()
+
 
 print("[*] Installing KalEl installer to /usr/bin/kalel...")
 if os.path.isfile("/usr/bin/kalel"):
@@ -56,9 +58,16 @@ subprocess.Popen("echo cd /opt/KalEl >> /usr/bin/kaleluninstall", shell=True).wa
 subprocess.Popen("echo exec python2 kaleluninstall $@ >> /usr/bin/kaleluninstall", shell=True).wait()
 subprocess.Popen("chmod +x /usr/bin/kaleluninstall", shell=True).wait()
 
+# Link for TOR TOR VPN
+subprocess.Popen("echo #!/bin/bash > /usr/bin/kalelvpn", shell=True).wait()
+subprocess.Popen("echo cd /opt/KalEl >> /usr/bin/kalelvpn", shell=True).wait()
+subprocess.Popen("echo exec python2 kalelvpn $@ >> /usr/bin/kalelvpn", shell=True).wait()
+subprocess.Popen("chmod +x /usr/bin/kalelvpn", shell=True).wait()
+
 # Write permission to run
 subprocess.call(['chmod', '+x', '/opt/KalEl/run.py'])
 subprocess.call(['chmod', '+x', '/opt/KalEl/uninstall.py'])
+subprocess.call(['chmod', '+x', '/opt/KalEl/module/tor/tor.py'])
 subprocess.call(['chmod', '+x', '/opt/KalEl/module/harvester/engine.py'])
 
 # Check if config files is present, if they are we will remove them
@@ -101,10 +110,10 @@ except OSError as e:
         raise
 
 # Install Tor bundle
-# subprocess.call(['apt-get', 'install', 'tor', '-y' '-qq'])
+subprocess.call(['apt-get', 'install', 'tor', '-y' '-qq'])
 
-# Install dependencies
-# pip.main(['install', 'stem'])
+# Install dependencies for TOR
+pip.main(['install', 'stem'])
 
 # Write setup to src/setupOK to let the tool know setup is complete
 with open("/opt/KalEl/src/setupOK", "w") as filewrite:
