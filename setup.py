@@ -110,7 +110,7 @@ except OSError as e:
         raise
 
 # Install Tor bundle
-subprocess.call(['apt-get', 'install', 'tor', '-y' '-qq'])
+subprocess.call(['apt-get', 'install', 'tor', '-y', '-qq'])
 
 # Install dependencies for TOR
 pip.main(['install', 'stem'])
