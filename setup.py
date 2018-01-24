@@ -34,6 +34,7 @@ def install():
     cwdpath = os.getcwd()
     subprocess.Popen("cp -rf %s /opt/KalEl" % cwdpath, shell=True).wait()
     subprocess.Popen("mkdir /root/.kal", shell=True).wait()
+    subprocess.Popen("touch /root/.kal/version.lock", shell=True).wait()
 
     # Create a symbolic link for performing actions via /usr/bin
     subprocess.Popen("ln -s /opt/KalEl/run.py /opt/KalEl/kalel", shell=True).wait()
@@ -95,13 +96,18 @@ def install():
     except OSError as e:
         if e.errno == os.errno.ENOENT:
             print("We cant seem to find ettercap-ng")
-            print("Please install ettercap or define it's install directory")
-            etterdir = raw_input("Define ettercap installation directory\nexample (default): /usr/bin/ettercap\nDir: ")
-            with open("/opt/KalEl/src/config.py", "w") as filewrite:
-                filewrite.write("\n#[ETTERCAP DIR]\n")
-                filewrite.write("etterdir")
-                filewrite.write(" = ")
-                filewrite.write("'%s'\n" % etterdir)
+            installettercap = raw_input('Would you like KalEl to try and install it?\n y/n: ')
+            if installettercap == ('y'):
+                subprocess.call(['sudo', 'apt-get', 'install', '-y', 'ettercap-text-only'])
+                print('Done')
+            else:
+                print("Please install ettercap or define it's install directory")
+                etterdir = raw_input("Define ettercap installation directory\nexample (default): /usr/bin/ettercap\nDir: ")
+                with open("/opt/KalEl/src/config.py", "w") as filewrite:
+                    filewrite.write("\n#[ETTERCAP DIR]\n")
+                    filewrite.write("etterdir")
+                    filewrite.write(" = ")
+                    filewrite.write("'%s'\n" % etterdir)
         else:
             print("something else went wrong, try again")
             raise
@@ -109,7 +115,13 @@ def install():
     # Install Tor bundle
     subprocess.call(['apt-get', 'install', 'tor', '-y', '-qq'])
 
+    # Install PIP
+    subprocess.call(['apt-get', 'install', 'python3-pip', '-y'])
+    subprocess.call(['apt-get', 'install', 'python-pip', '-y'])
+
+
     # Install dependencies for TOR
+    import pip
     pip.main(['install', 'stem'])
 
     # Write setup to src/setupOK to let the tool know setup is complete
