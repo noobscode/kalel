@@ -164,7 +164,7 @@ def agreement():
 
 
 def goon():
-    raw_input('Press [ENTER] to continue...')
+    raw_input(bcolors.OKGREEN + 'Press [ENTER] to continue...' + bcolors.ENDC)
 
 
 # Header information Intro text
@@ -210,7 +210,7 @@ def mainmenu():
             print('Updating')
             update_kalel()
         elif ans == "6":
-            print("Visit out github at: https://github.com/noobscode/kalel")
+            print("Visit our github at: https://github.com/noobscode/kalel")
             goon()
         elif ans == "7":
             print("\n Goodbye")
