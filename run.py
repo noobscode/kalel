@@ -30,7 +30,7 @@ if not os.geteuid() == 0:
 
 
 # Check if setup is complete
-def setup():
+def dosetup():
     if not os.path.isfile("/opt/KalEl/src/setupOK"):
         print("You must run setup.py first\n")
         ans1 = raw_input("Would you like to run setup now?\n y/n: ")
@@ -273,12 +273,19 @@ def update_kalel():
     subprocess.Popen("git fetch origin master", shell=True).wait()
     subprocess.Popen("git reset --hard FETCH_HEAD", shell=True).wait()
     subprocess.Popen("mkdir /opt/KalEl/.kal", shell=True).wait()
-    from setup import fixpermissions
+
+    # Fix permissions
+    subprocess.Popen(['chmod', '+x', '/opt/KalEl/run.py'])
+    subprocess.Popen(['chmod', '+x', '/opt/KalEl/module/tor/tor.py'])
+    subprocess.Popen(['chmod', '+x', '/opt/KalEl/module/ettercap/spoof.py'])
+    subprocess.Popen(['chmod', '+x', '/opt/KalEl/module/harvester/prep.py'])
+    subprocess.Popen(['chmod', '+x', '/opt/KalEl/module/harvester/engine.py'])
+    subprocess.Popen(['chmod', '+x', '/opt/KalEl/module/spoofmail/spoofmail.py'])
     cleanup()
 
     # Create a symbolic link for launching the toolkit via usr/bin
     subprocess.Popen("ln -s /opt/KalEl/run.py /opt/KalEl/kalel", shell=True).wait()
-    subprocess.Popen("ln -s /opt/KalEl/kalelupdate.py /opt/KalEl/kalelupdate", shell=True).wait()
+
     print("Update finished, returning to main menu.")
     goon()
     os.system('kalel')
@@ -291,13 +298,11 @@ def cleanup():
     if torip != 'VPN Disabled':
         print('NB: Tor is still running!')
         print('You can shut it down manually by typing\n$ sudo kalelvpn stop')
-    else:
-        pass
 
 
 # Run the program
 try:
-    setup()
+    dosetup()
     mainmenu()
 except KeyboardInterrupt:
     print("\n\nDon't forget your cat!\n")
