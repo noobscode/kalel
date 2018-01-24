@@ -284,8 +284,8 @@ def update_kalel():
 
 
 def cleanup():
-    if os.path.isfile(kaldir + '/version.lock'):
-        os.remove(kaldir + '/version.lock')
+    #if os.path.isfile(kaldir + '/version.lock'):
+        #os.remove(kaldir + '/version.lock')
     if torip != 'VPN Disabled':
         print('NB: Tor is still running!')
         print('You can shut it down manually by typing\n$ sudo kalelvpn stop')

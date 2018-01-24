@@ -33,7 +33,7 @@ def install():
     print("[*] Copying KalEl into the /opt/KalEl directory...")
     cwdpath = os.getcwd()
     subprocess.Popen("cp -rf %s /opt/KalEl" % cwdpath, shell=True).wait()
-    subprocess.Popen("mkdir /opt/KalEl/.kal", shell=True).wait()
+    subprocess.Popen("mkdir /opt/KalEl/.kal/", shell=True).wait()
     subprocess.Popen("touch /opt/KalEl/.kal/version.lock", shell=True).wait()
 
     # Create a symbolic link for performing actions via /usr/bin
