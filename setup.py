@@ -53,12 +53,6 @@ def install():
     subprocess.Popen("echo exec python2 kalel $@ >> /usr/bin/kalel", shell=True).wait()
     subprocess.Popen("chmod +x /usr/bin/kalel", shell=True).wait()
 
-    # Link for update
-    subprocess.Popen("echo #!/bin/bash > /usr/bin/kalelupdate", shell=True).wait()
-    subprocess.Popen("echo cd /opt/KalEl >> /usr/bin/kalelupdate", shell=True).wait()
-    subprocess.Popen("echo exec python2 kalelupdate $@ >> /usr/bin/kalelupdate", shell=True).wait()
-    subprocess.Popen("chmod +x /usr/bin/kalelupdate", shell=True).wait()
-
     # Link for TOR TOR VPN
     subprocess.Popen("echo #!/bin/bash > /usr/bin/kalelvpn", shell=True).wait()
     subprocess.Popen("echo cd /opt/KalEl >> /usr/bin/kalelvpn", shell=True).wait()
