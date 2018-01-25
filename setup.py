@@ -154,11 +154,14 @@ def uninstall():
 
 
 def reinstall():
+    if not os.path.isfile('/tmp/setup.py'):
+        subprocess.Popen('cp /opt/KalEl/setup.py /tmp/setup.py', shell=True).wait()
     os.chdir('/tmp/')
-    subprocess.call(['git', 'clone', 'https://github.com/noobscode/kalel'])
-    subprocess.Popen('cd kalel/')
-    subprocess.call(['setup.py', 'uninstall'])
-    subprocess.call(['setup.py', 'install'])
+    subprocess.call(['setup.py', 'reinstall'], shell=True).wait()
+    subprocess.call(['git', 'clone', 'https://github.com/noobscode/kalel'], shell=True).wait()
+    subprocess.call('cd kalel/', shell=True).wait()
+    subprocess.call(['setup.py', 'uninstall'], shell=True).wait()
+    subprocess.call(['setup.py', 'install'], shell=True).wait()
 
 
 arg = sys.argv[1:]
