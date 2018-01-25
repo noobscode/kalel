@@ -37,8 +37,6 @@ def install():
 
     # Create a symbolic link for performing actions via /usr/bin
     subprocess.Popen("ln -s /opt/KalEl/run.py /opt/KalEl/kalel", shell=True).wait()
-    subprocess.Popen("ln -s /opt/KalEl/kalelupdate.py /opt/KalEl/kalelupdate", shell=True).wait()
-    subprocess.Popen("ln -s /opt/KalEl/uninstall.py /opt/KalEl/kaleluninstall", shell=True).wait()
     subprocess.Popen("ln -s /opt/KalEl/module/tor/tor.py /opt/KalEl/kalelvpn", shell=True).wait()
 
     print("[*] Installing KalEl installer to /usr/bin/kalel...")
@@ -157,9 +155,9 @@ def uninstall():
 
 def reinstall():
     os.chdir('/tmp/')
-    uninstall()
     subprocess.call(['git', 'clone', 'https://github.com/noobscode/kalel'])
     subprocess.Popen('cd kalel/')
+    subprocess.call(['setup.py', 'uninstall'])
     subprocess.call(['setup.py', 'install'])
 
 

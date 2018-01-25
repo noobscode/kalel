@@ -26,7 +26,7 @@ class bcolors:
 
 # Make sure Tool is run via sudo or by root
 if not os.geteuid() == 0:
-    sys.exit("\nOnly root can run this script\nTry with $ sudo kalel")
+    sys.exit(bcolors.FAIL + "\nOnly root can run this script\nTry with $ sudo kalel" + bcolors.ENDC)
 
 
 # Check if setup is complete
@@ -106,7 +106,7 @@ def pullupdate(define_version):
         pass
 
 
-# Tor Section
+# Pull the TOR IP/Status Section
 def getip():
     torip = open("module/tor/tor.ip", "r").read().rstrip()
     return torip
@@ -137,6 +137,7 @@ def agreement():
         with open("LICENSE") as fileopen:
             for line in fileopen:
                 print((line.rstrip()))
+                print('\n')
 
             print("{0}Kal El is designed purely"
                   " for good and not evil. If you are planning on "
