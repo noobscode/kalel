@@ -35,7 +35,7 @@ def dosetup():
         print("You must run setup.py first\n")
         ans1 = raw_input("Would you like to run setup now?\n y/n: ")
         if ans1 == "y":
-            subprocess.call(['setup.py', 'install'])
+            os.system('setup.py install')
         else:
             exit(1)
 
@@ -182,10 +182,11 @@ def mainmenu():
         1.Traffic Spoof Attack # Force Redirect Network Traffic (DNS SPOOF)
         2.The Harvester        # Harvest Email, Vhosts, Subdomain names (more)
         3.Spoof Emails         # Send Fake Emails To And From Anyone
-        4.Activate Tor(VPN)
-        5.Update KalEl         # Update The KalEl Toolkit
-        6.Help/Tutorial
-        7.Exit/Quit
+        4.Traffic Generator    # Generate Fake Visitor Stats on a webpage
+        5.Activate Tor(VPN)    # Activate VPN For Anonymity To Hide Yourself
+        9.Update KalEl         # Update The KalEl Toolkit
+        10.Help/Tutorial
+        99.Exit/Quit
         """)
         ans = raw_input("Choose Attack Vector: ")
         if ans == "1":
@@ -201,14 +202,18 @@ def mainmenu():
             logo()
             os.system('module/spoofmail/spoofmail.py')
         elif ans == "4":
-            submenu_tor()
+            os.system('clear')
+            logo()
+            os.system('module/trafficgen/getheader.py')
         elif ans == "5":
+            submenu_tor()
+        elif ans == "9":
             print('Updating')
             update_kalel()
-        elif ans == "6":
+        elif ans == "10":
             print("Visit our github at: https://github.com/noobscode/kalel")
             goon()
-        elif ans == "7":
+        elif ans == "99":
             print("\n Goodbye")
             sys.exit(1)
         elif ans != "":
@@ -307,7 +312,4 @@ try:
     mainmenu()
 except KeyboardInterrupt:
     print("\n\nDon't forget your cat!\n")
-finally:
-    cleanup()
-    sys.exit(1)
 # End

@@ -3,7 +3,6 @@ import os
 import time
 import subprocess
 import sys
-import pip
 
 
 class bcolors:
@@ -106,26 +105,34 @@ def install():
     # Install Tor bundle
     subprocess.call(['apt-get', 'install', 'tor', '-y', '-qq'])
 
-    # Install PIP
-    subprocess.call(['apt-get', 'install', 'python3-pip', '-y'])
-    subprocess.call(['apt-get', 'install', 'python-pip', '-y'])
-
-
     # Install dependencies for TOR
-    import pip
-    pip.main(['install', 'stem'])
+    try:
+        import pip
+    except ImportError:
+        print('we could not find pip, trying to install pip now')
+        # Install PIP
+        subprocess.call(['apt-get', 'install', 'python3-pip', '-y'])
+        subprocess.call(['apt-get', 'install', 'python-pip', '-y'])
+    except Exception:
+        print("KalEl's VPN Module might not work because of missing pip")
+    else:
+        print('PIP install OK!')
+        pip.main(['install', 'stem'])
+        pip.main(['install', 'requests'])
+        pass
 
     # Write setup to src/setupOK to let the tool know setup is complete
     with open("/opt/KalEl/src/setupOK", "w") as filewrite:
         filewrite.write("Installed")
 
-    print("[*] We are now finished! To run KalEl, type kalel...")
+    print(bcolors.OKGREEN + "[*] We are now finished! To run KalEl, type kalel..." + bcolors.ENDC)
     exit(1)
 
 def fixpermissions():
     # Write permission to run
     subprocess.Popen(['chmod', '+x', '/opt/KalEl/run.py'])
     subprocess.Popen(['chmod', '+x', '/opt/KalEl/module/tor/tor.py'])
+    subprocess.Popen(['chmod', '+x', '/opt/KalEl/module/trafficgen/generator.py'])
     subprocess.Popen(['chmod', '+x', '/opt/KalEl/module/ettercap/spoof.py'])
     subprocess.Popen(['chmod', '+x', '/opt/KalEl/module/harvester/prep.py'])
     subprocess.Popen(['chmod', '+x', '/opt/KalEl/module/harvester/engine.py'])
