@@ -1,7 +1,7 @@
 # Network Stress Test and Penetration Testing Toolkit
 # Author: NoobsCode
 ```
- __  ___      ___       __          _______  __
+__  ___      ___       __          _______  __
 |  |/  /     /   \     |  |        |   ____||  |
 |  '  /     /  ^  \    |  |        |  |__   |  |
 |    <     /  /_\  \   |  |        |   __|  |  |
@@ -11,7 +11,7 @@
 - Kal El Network Penetration Testing (KalEl NPT)
 - Created by: NoobsCode   
 - Version: 2.1  KalEl is up to date!
-- Tor Active IP: 77.247.181.162
+- Tor IP: 172.30.144.25
 - Github: https://www.Github.com/NoobsCode/KalEl
 
 Kal El is a neat tool for Network Stress Testing and Penetration Testing
@@ -20,12 +20,13 @@ This toolkit is still a work in progress and is a very early build.
     1.Traffic Spoof Attack # Force Redirect Network Traffic (DNS SPOOF)
     2.The Harvester        # Harvest Email, Vhosts, Subdomain names (more)
     3.Spoof Emails         # Send Fake Emails To And From Anyone
-    4.Activate Tor(VPN)
-    5.Update KalEl         # Update The KalEl Toolkit
-    6.Help/Tutorial
-    7.Exit/Quit
-
-Choose Attack Vector: $
+    4.Traffic Generator    # Generate Fake Visitor Stats on a webpage
+    5.Activate Tor(VPN)    # Activate VPN For Anonymity To Hide Yourself
+    9.Update KalEl         # Update The KalEl Toolkit
+    10.Help/Tutorial
+    99.Exit/Quit
+    
+Choose Attack Vector:  $
 ```
 Supported OS
 -------------------
