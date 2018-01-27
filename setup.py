@@ -109,6 +109,7 @@ def install():
 
     # Install Tor bundle
     subprocess.call(['apt-get', 'install', 'tor', '-y', '-qq'])
+    print('TOR Installed')
 
     # Install dependencies for TOR
     try:
