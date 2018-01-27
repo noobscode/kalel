@@ -38,7 +38,7 @@ $ git clone https://github.com/noobscode/KalEl
 
 $ cd kalel/
 
-$ sudo python setup.py install
+$ sudo -H python setup.py install
 
 How to Run KalEl
 -------------------

@@ -236,11 +236,11 @@ def submenu_tor():
         """)
         ans = raw_input("Choose Attack Vector: ")
         if ans == "1":
-            subprocess.call(['kalelvpn', 'start'])
+            os.system('module/tor/tor.py start')
         elif ans == "2":
-            subprocess.call(['kalelvpn', 'stop'])
+            os.system('module/tor/tor.py stop')
         elif ans == "3":
-            subprocess.call(['kalelvpn', 'switch'])
+            os.system('module/tor/tor.py switch')
         elif ans == "4":
             mainmenu()
         elif ans != "":

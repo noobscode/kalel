@@ -16,6 +16,11 @@ class bcolors:
     UNDERLINE = '\033[4m'
 
 
+# Make sure Tool is run via sudo or by root
+if not os.geteuid() == 0:
+    sys.exit(bcolors.FAIL + "\nOnly root can run this script\nTry with $ sudo kalel" + bcolors.ENDC)
+
+
 def install():
     print("Setting up KalEl For You...")
 
@@ -132,7 +137,7 @@ def fixpermissions():
     # Write permission to run
     subprocess.Popen(['chmod', '+x', '/opt/KalEl/run.py'])
     subprocess.Popen(['chmod', '+x', '/opt/KalEl/module/tor/tor.py'])
-    subprocess.Popen(['chmod', '+x', '/opt/KalEl/module/trafficgen/generator.py'])
+    subprocess.Popen(['chmod', '+x', '/opt/KalEl/module/trafficgen/getheader.py'])
     subprocess.Popen(['chmod', '+x', '/opt/KalEl/module/ettercap/spoof.py'])
     subprocess.Popen(['chmod', '+x', '/opt/KalEl/module/harvester/prep.py'])
     subprocess.Popen(['chmod', '+x', '/opt/KalEl/module/harvester/engine.py'])

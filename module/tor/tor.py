@@ -23,6 +23,11 @@ class bcolors:
     WHITE = '\033[37m'
 
 
+# Make sure Tool is run via sudo or by root
+if not os.geteuid() == 0:
+    sys.exit(bcolors.FAIL + "\nOnly root can run this script\nTry with $ sudo kalel" + bcolors.ENDC)
+
+
 def logo():
     return
 
@@ -193,11 +198,14 @@ def torstatus():
             start_kalelvpn()
 
 
+def arguments():
+    print(bcolors.FAIL + 'Missing Argument: start | stop | switch')
+
 arg = sys.argv[1:]
 
 
 if len(arg) != 1:
-    torstatus()
+    arguments()
 elif sys.argv[1] == "start":
     logo()
     start_kalelvpn()
@@ -207,4 +215,4 @@ elif sys.argv[1] == "stop":
 elif sys.argv[1] == "switch":
     switch_tor()
 else:
-    torstatus()
+    arguments()
