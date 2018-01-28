@@ -24,6 +24,10 @@ if not os.geteuid() == 0:
 
 
 headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
+print('\n')
+print('Traffic Generator is a tool used to generate fake web traffic \nthat can be used to fake page views and visitor stats.')
+print(bcolors.WARNING + '\nIf used with TOR VPN module you will get a new \nIP for each request resulting in unique visitor stats as well' + bcolors.ENDC)
+print('\n')
 
 url = raw_input('URL: ')
 if 'http://' in url:
@@ -49,19 +53,18 @@ else:
 
 
 
-sleepfor = raw_input('Pull a request every x secounds\nTime interval: ')
+sleepfor = raw_input('\nPull a request every x secounds\nTime interval: ')
 if sleepfor <= 5:
     sleepfor = 5
 else:
     sleepfor = sleepfor
 
-usetor = raw_input('Do you want to use Tor and switch ip for each request?\nThis will give you uniqe visitor starts. y/n: ')
+usetor = raw_input('\nDo you want to activate VPN? (Required for IP Switching!) y/n: ')
 if usetor == 'y':
     print('Starting kalelVPN module (TOR)')
     os.system('module/tor/tor.py start')
 else:
     pass
-
 
 
 def getreq():
@@ -70,23 +73,34 @@ def getreq():
     print("Status: %s") % (response.status_code),
     print(bcolors.ENDC)
 
-def getip():
-    running = open("module/tor/tor.ip", "r").read().rstrip()
-    return running
-    if running != 'VPN Disabled':
+
+def runtraffic():
+    while True:
+        print('\nSENDING GET REQUESTS')
+        getreq()
+        print('Sleep for %s seconds') % (sleepfor)
+        time.sleep(float(sleepfor))
+
+def runtrafficsw():
+    while True:
+        print('\nSENDING GET REQUESTS')
+        getreq()
         print(bcolors.FAIL + 'Pulling a new IP from Tor' + bcolors.ENDC)
         os.system('module/tor/tor.py switch')
+        print('Sleep for %s seconds') % (sleepfor)
+        time.sleep(float(sleepfor))
+
+
+try:
+    switchon = raw_input('\nDo you want to use Tor to switch ip for each request?\nThis will potentially give you unique visitor starts. y/n: ')
+    if switchon == 'y':
+        print(bcolors.OKGREEN + '\nGenerating traffic with IP Switching.....' + bcolors.ENDC)
+        runtrafficsw()
     else:
-        pass
-
-
-while True:
-    print('\nGet requests')
-    getreq()
-    getip()
-    print('Sleep for %s seconds') % (sleepfor)
-    time.sleep(float(sleepfor))
-
-
-print('Stopping VPN')
-os.system('module/tor/tor.py stop')
+        print(bcolors.OKGREEN + '\nGenerating traffic.....' + bcolors.ENDC)
+        runtraffic()
+except KeyboardInterrupt:
+    print(bcolors.FAIL + 'Stopping VPN' + bcolors.ENDC)
+    os.system('module/tor/tor.py stop')
+    print(bcolors.OKGREEN + 'VPN Disabled!' + bcolors.ENDC)
+    time.sleep(2)

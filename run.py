@@ -35,17 +35,9 @@ def dosetup():
         print("You must run setup.py first\n")
         ans1 = raw_input("Would you like to run setup now?\n y/n: ")
         if ans1 == "y":
-            os.system('setup.py install')
+            os.system('sudo python setup.py install')
         else:
-            exit(1)
-
-
-def check_os():
-    if os.name == "nt":
-        operating_system = "windows"
-    if os.name == "posix":
-        operating_system = "posix"
-    return operating_system
+            sys.exit()
 
 
 kaldir = '/opt/KalEl/.kal'
@@ -215,7 +207,7 @@ def mainmenu():
             goon()
         elif ans == "99":
             print("\n Goodbye")
-            sys.exit(1)
+            sys.exit()
         elif ans != "":
             print("\n Not Valid Choice Try again")
 
@@ -232,34 +224,19 @@ def submenu_tor():
         2.Stop TOR VPN         # Stop TOR VPN
         3.Switch IP (Renew)    # Request new IP address
 
-        4.Back to main menu
+        99.Back to main menu
         """)
-        ans = raw_input("Choose Attack Vector: ")
+        ans = raw_input("Choose Action: ")
         if ans == "1":
             os.system('module/tor/tor.py start')
         elif ans == "2":
             os.system('module/tor/tor.py stop')
         elif ans == "3":
             os.system('module/tor/tor.py switch')
-        elif ans == "4":
+        elif ans == "99":
             mainmenu()
         elif ans != "":
             print("\n Not Valid Choice Try again")
-
-
-# Check if we are running Kali Linux
-def check_kali():
-    if os.path.isfile("/etc/apt/sources.list"):
-        kali = open("/etc/apt/sources.list", "r")
-        kalidata = kali.read()
-        if "kali" in kalidata:
-            return "Kali"
-        # if we aren't running kali
-        else:
-            return "Non-Kali"
-    else:
-        print("[!] Not running a Debian variant..")
-        return "Non-Kali"
 
 
 # KalEl Update

@@ -18,7 +18,7 @@ class bcolors:
 
 # Make sure Tool is run via sudo or by root
 if not os.geteuid() == 0:
-    sys.exit(bcolors.FAIL + "\nOnly root can run this script\nTry with $ sudo kalel" + bcolors.ENDC)
+    sys.exit(bcolors.FAIL + "\nOnly root can run this script\nTry with $ sudo -H setup.py install|uninstall" + bcolors.ENDC)
 
 
 def install():
@@ -32,7 +32,7 @@ def install():
             raw_input('Press [ENTER] to continue...')
             reinstall()
         else:
-            exit(1)
+            sys.exit()
 
     print("[*] Copying KalEl into the /opt/KalEl directory...")
     cwdpath = os.getcwd()
@@ -48,30 +48,19 @@ def install():
         subprocess.Popen("rm /usr/bin/kalel", shell=True).wait()
     else:
         pass
-
     # Link for main program
     subprocess.Popen("echo #!/bin/bash > /usr/bin/kalel", shell=True).wait()
     subprocess.Popen("echo cd /opt/KalEl >> /usr/bin/kalel", shell=True).wait()
     subprocess.Popen("echo exec python2 kalel $@ >> /usr/bin/kalel", shell=True).wait()
     subprocess.Popen("chmod +x /usr/bin/kalel", shell=True).wait()
-
     # Link for TOR TOR VPN
     subprocess.Popen("echo #!/bin/bash > /usr/bin/kalelvpn", shell=True).wait()
     subprocess.Popen("echo cd /opt/KalEl >> /usr/bin/kalelvpn", shell=True).wait()
     subprocess.Popen("echo exec python2 kalelvpn $@ >> /usr/bin/kalelvpn", shell=True).wait()
     subprocess.Popen("chmod +x /usr/bin/kalelvpn", shell=True).wait()
-
     fixpermissions()
 
-    # Check if config files is present, if they are we will remove them
-    if os.path.isfile("/opt/KalEl/src/setupOK"):
-        subprocess.call(['rm', '/opt/KalEl/src/setupOK'])
-
-    if os.path.isfile("/opt/KalEl/src/config.py"):
-        subprocess.call(['rm', '/opt/KalEl/src/config.py'])
-
     # CHECK REQUIRED DEPENDENCIES
-
     FNULL = open(os.devnull, 'w')
 
     # Install sendemail for mail spoofing
@@ -109,7 +98,7 @@ def install():
 
     # Install Tor bundle
     subprocess.call(['apt-get', 'install', 'tor', '-y', '-qq'])
-    print('TOR Installed')
+    print('[*] TOR Install OK!')
 
     # Install dependencies for TOR
     try:
@@ -122,7 +111,7 @@ def install():
     except Exception:
         print("KalEl's VPN Module might not work because of missing pip")
     else:
-        print('PIP install OK!')
+        print('[*] PIP install OK!')
         pip.main(['install', 'stem'])
         pip.main(['install', 'requests'])
         pass
@@ -132,7 +121,7 @@ def install():
         filewrite.write("Installed")
 
     print(bcolors.OKGREEN + "[*] We are now finished! To run KalEl, type kalel..." + bcolors.ENDC)
-    exit(1)
+    sys.exit()
 
 def fixpermissions():
     # Write permission to run
@@ -152,7 +141,7 @@ def uninstall():
     if not os.path.isfile('/opt/KalEl/run.py'):
         if not os.path.isfile('/usr/bin/kalel'):
             print('KaleEl Is not installed')
-            exit(1)
+            sys.exit()
 
     # If KalEl is installed we'll remove it
     if os.path.isdir('/opt/KalEl'):
@@ -163,7 +152,7 @@ def uninstall():
         subprocess.Popen("cd ..;rm -fr /opt/KalEl", shell=True).wait()
         print('Done! Bye KalEl :()')
         time.sleep(2)
-        exit(1)
+        sys.exit()
 
 
 def reinstall():
@@ -182,7 +171,7 @@ arg = sys.argv[1:]
 if len(arg) != 1:
     print(bcolors.FAIL + '\n!!! Missing argument !!!' + bcolors.ENDC)
     print(bcolors.OKGREEN + 'Choose argument: install/reinstall/uninstall' + bcolors.ENDC)
-    sys.exit(1)
+    sys.exit()
 elif sys.argv[1] == "install":
     install()
 elif sys.argv[1] == "reinstall":
@@ -191,4 +180,5 @@ elif sys.argv[1] == "uninstall":
     uninstall()
 else:
     print('Choose argument: install/uninstall')
-    sys.exit(1)
+    print(bcolors.WARNING + 'Install = sudo -H python setup.py install' + bcolors.ENDC)
+    sys.exit()
