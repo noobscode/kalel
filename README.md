@@ -25,61 +25,72 @@ This toolkit is still a work in progress and is a very early build.
     9.Update KalEl         # Update The KalEl Toolkit
     10.Help/Tutorial
     99.Exit/Quit
-    
+
 Choose Attack Vector:  $
 ```
-Supported OS
+Supported OS:
 -------------------
-Tested on Kali Linux and Ubundu
+Tested on Ubuntu 14/17 and Kali Linux (Debian)
 
 
-How to install
+How to install:
 -------------------
-$ git clone https://github.com/noobscode/KalEl
+``$ git clone https://github.com/noobscode/KalEl``
 
-$ cd kalel/
+``$ cd kalel/``
 
-$ sudo -H python setup.py install
+``$ sudo -H python setup.py install``
 
-How to Run KalEl
+How to Run KalEl:
 -------------------
-$ sudo kalel
-
-How to Run KalEl VPN outside the Toolkit
--------------------
-$ sudo kalelvpn start / stop / switch
-
-How to update:
--------------------
-$ sudo kalelupdate
+``$ sudo kalel``
 
 How to uninstall:
 -------------------
-$ sudo setup.py uninstall
+``$ sudo setup.py uninstall``
 
-Extra:
--------------------
-$ sudo python setup.py install / reinstall / uninstall
 
-Attack Vectors:
+# Attack Vectors:
 -------------------
-* DNS Soof Attack Vector that allow you to force redirect network traffic.
+DNS Spoof Module:
+* DNS Spoof Attack Vector that allow you to force redirect network traffic.
+-------------------
+The Harvester:
 * The Harvester is a tool for gathering e-mail accounts, subdomain names, virtual hosts, open ports/ banners, and employee names from different public sources (search engines and servers).
+-------------------
+SendEmail:
 * Send fake emails to and from anyone. Also supports attachments.
-* (More attack vectors will be available with updates)
+-------------------
+The Traffic Generator:
+* Traffic Generator is a tool used to generate fake web traffic that can be used to fake page views and visitor stats. If used with TOR VPN module you will have the option to enable auto switching where it will get a new IP for each request resulting in unique visitor stats as well as page views.
+-------------------
+KalElVPN Module (Tor VPN):
+* The VPN module included in this tool have three simple functions
+
+  - Start/stop, The VPN module can also be used outside the toolkit
+    for encrypting your network traffic and
+
+  - Switch, Allows you to request a new IP address at any time.
+    Can be used as many times as you wish.
+
+(More attack vectors will be available with updates)
 
 Technical Information:
 -------------------------------
-* Platform: Linux are officially supported.
 * Written in Python
 
-How To Run
-----------
-https://github.com/noobscode/kalel
+Requirements:
+* Python
+* PIP
+* Stem
+* Requests
+* Tor
+* SendEmail
+* ettercap-text-only
+
 
 Support This Project
 --------------------
-
   Visit us at
   -----------
 * https://github.com/noobscode
