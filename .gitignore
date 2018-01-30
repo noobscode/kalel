@@ -4,7 +4,6 @@ __pycache__/
 *$py.class
 *agreement
 etter.dns
-src/config.py
 *setupOK
 *sslstrip.log
 # C extensions
