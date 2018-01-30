@@ -10,8 +10,8 @@ __  ___      ___       __          _______  __
 
 - Kal El Network Penetration Testing (KalEl NPT)
 - Created by: NoobsCode   
-- Version: 2.1  KalEl is up to date!
-- Tor IP: 172.30.144.25
+- Version: 2.2  KalEl is up to date!
+- Tor IP: VPN Disabled
 - Github: https://www.Github.com/NoobsCode/KalEl
 
 Kal El is a neat tool for Network Stress Testing and Penetration Testing
@@ -22,11 +22,13 @@ This toolkit is still a work in progress and is a very early build.
     3.Spoof Emails         # Send Fake Emails To And From Anyone
     4.Traffic Generator    # Generate Fake Visitor Stats on a webpage
     5.Activate Tor(VPN)    # Activate VPN For Anonymity To Hide Yourself
-    9.Update KalEl         # Update The KalEl Toolkit
+    6.Cracking Tools       # Tools for cracking Passwords SHA1, SHA2 and MD5
+
+    9. Update KalEl         # Update The KalEl Toolkit
     10.Help/Tutorial
     99.Exit/Quit
 
-Choose Attack Vector:  $
+Choose Attack Vector: $
 ```
 Supported OS:
 -------------------
