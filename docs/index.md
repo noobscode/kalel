@@ -2,122 +2,83 @@
 layout: default
 ---
 
-Text can be **bold**, _italic_, ~~strikethrough~~ or `keyword`.
 
-[Link to another page](another-page).
 
-There should be whitespace between paragraphs.
+Kal El is a neat tool for Network Stress Testing and Penetration Testing.
 
-There should be whitespace between paragraphs. We recommend including a README, or a file with information about your project.
+This toolkit is still a work in progress and is still in the BETA fase.
 
-# [](#header-1)Header 1
+### ***KalEl CAN BE HARMFUL IF NOT USED WITH CAUTION! IT IS NOT DESIGNED FOR MALICIOUS USE AND IS PERMITTED BY LAW!***
 
-This is a normal paragraph following a header. GitHub is a code hosting platform for version control and collaboration. It lets you and others work together on projects from anywhere.
 
-## [](#header-2)Header 2
+## Supported OS:
 
-> This is a blockquote following a header.
->
-> When something is important enough, you do it even if the odds are not in your favor.
+Tested on Ubuntu 14/17 and Kali Linux (Debian)
 
-### [](#header-3)Header 3
 
-```js
-// Javascript code with syntax highlighting.
-var fun = function lang(l) {
-  dateformat.i18n = require('./lang/' + l)
-  return true;
-}
+## How to install:
+```
+$ git clone https://github.com/noobscode/KalEl
+
+$ cd kalel/
+
+$ sudo -H python setup.py install
+```
+## How to Run KalEl:
+```
+$ sudo kalel
+```
+## How to uninstall:
+```
+$ sudo setup.py uninstall
 ```
 
-```ruby
-# Ruby code with syntax highlighting
-GitHubPages::Dependencies.gems.each do |gem, version|
-  s.add_dependency(gem, "= #{version}")
-end
-```
 
-#### [](#header-4)Header 4
+# Attack Vectors:
 
-*   This is an unordered list following a header.
-*   This is an unordered list following a header.
-*   This is an unordered list following a header.
+## DNS Spoof Module:
+DNS Spoof Attack Vector that allow you to force redirect network traffic.
 
-##### [](#header-5)Header 5
+## The Harvester:
+The Harvester is a tool for gathering e-mail accounts, subdomain names, virtual hosts, open ports/ banners, and employee names from different public sources (search engines and servers).
 
-1.  This is an ordered list following a header.
-2.  This is an ordered list following a header.
-3.  This is an ordered list following a header.
+## SendEmail:
+Send fake emails to and from anyone. Also supports attachments.
 
-###### [](#header-6)Header 6
+## The Traffic Generator:
+Traffic Generator is a tool used to generate fake web traffic that can be used to fake page views and visitor stats. If used with TOR VPN module you will have the option to enable auto switching where it will get a new IP for each request resulting in unique visitor stats as well as page views.
 
-| head1        | head two          | three |
-|:-------------|:------------------|:------|
-| ok           | good swedish fish | nice  |
-| out of stock | good and plenty   | nice  |
-| ok           | good `oreos`      | hmm   |
-| ok           | good `zoute` drop | yumm  |
+## KalElVPN Module (Tor VPN):
 
-### There's a horizontal rule below this.
+The VPN module included in this tool have three simple functions
 
-* * *
+  - Start/stop, The VPN module can also be used outside the toolkit
+    for encrypting your network traffic and
 
-### Here is an unordered list:
+  - Switch, Allows you to request a new IP address at any time.
+    Can be used as many times as you wish.
 
-*   Item foo
-*   Item bar
-*   Item baz
-*   Item zip
+### (More attack vectors will be available with updates)
 
-### And an ordered list:
+## Technical Information:
 
-1.  Item one
-1.  Item two
-1.  Item three
-1.  Item four
+* Written in Python
 
-### And a nested list:
-
-- level 1 item
-  - level 2 item
-  - level 2 item
-    - level 3 item
-    - level 3 item
-- level 1 item
-  - level 2 item
-  - level 2 item
-  - level 2 item
-- level 1 item
-  - level 2 item
-  - level 2 item
-- level 1 item
-
-### Small image
-
-![](https://assets-cdn.github.com/images/icons/emoji/octocat.png)
-
-### Large image
-
-![](https://guides.github.com/activities/hello-world/branching.png)
+## Requirements:
+* Python
+* PIP
+* Stem
+* Requests
+* Tor
+* SendEmail
+* ettercap-text-only
 
 
-### Definition lists can be used with HTML syntax.
+# Support This Project
+--------------------
+  Visit us at
+  -----------
+* https://github.com/noobscode
 
-<dl>
-<dt>Name</dt>
-<dd>Godzilla</dd>
-<dt>Born</dt>
-<dd>1952</dd>
-<dt>Birthplace</dt>
-<dd>Japan</dd>
-<dt>Color</dt>
-<dd>Green</dd>
-</dl>
 
-```
-Long, single-line code blocks should not wrap. They should horizontally scroll if they are too long. This line should be long enough to demonstrate this.
-```
-
-```
-The final element.
-```
+![](https://URL)
