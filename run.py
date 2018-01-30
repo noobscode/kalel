@@ -176,6 +176,8 @@ def mainmenu():
         3.Spoof Emails         # Send Fake Emails To And From Anyone
         4.Traffic Generator    # Generate Fake Visitor Stats on a webpage
         5.Activate Tor(VPN)    # Activate VPN For Anonymity To Hide Yourself
+        6.Cracking Tools       # Tools for cracking passwords and decrypt MD5
+
         9.Update KalEl         # Update The KalEl Toolkit
         10.Help/Tutorial
         99.Exit/Quit
@@ -199,6 +201,8 @@ def mainmenu():
             os.system('module/trafficgen/getheader.py')
         elif ans == "5":
             submenu_tor()
+        elif ans == "6":
+            submenu_cracking()
         elif ans == "9":
             print('Updating')
             update_kalel()
@@ -212,7 +216,7 @@ def mainmenu():
             print("\n Not Valid Choice Try again")
 
 
-# Create the submenu
+# Create the submenu for tor
 def submenu_tor():
     os.system('clear')
     ans = True
@@ -238,6 +242,27 @@ def submenu_tor():
         elif ans != "":
             print("\n Not Valid Choice Try again")
 
+# Create the submenu for cracking
+def submenu_cracking():
+    os.system('clear')
+    ans = True
+    while ans:
+        logo()
+        intro()
+        print ("""
+        1.Hash Buster        # Tool for Cracking MD5 hashes
+
+        99.Back to main menu
+        """)
+        ans = raw_input("Choose Action: ")
+        if ans == "1":
+            os.system('clear')
+            logo()
+            os.system('module/cracking/hashbuster.py')
+        elif ans == "99":
+            mainmenu()
+        elif ans != "":
+            print("\n Not Valid Choice Try again")
 
 # KalEl Update
 def update_kalel():
