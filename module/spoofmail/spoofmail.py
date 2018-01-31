@@ -2,6 +2,7 @@
 
 import subprocess
 import sys
+import os
 
 
 class bcolors:
@@ -48,25 +49,49 @@ def spoofemail():
             print('Letting Kalel decide smtp server\nServer: %s' % smtpserver)
 
     # Input variables to use when performing action
-    toemail = raw_input('Target email: ')
-    fromemail = raw_input('Sender email: ')
-    subject = raw_input('Subject: ')
-    message = raw_input('Message: ')
+    print(bcolors.WARNING + '\nTarget email examples:' + bcolors.ENDC)
+    print('Example 1: single@target.com')
+    print('Example 2: first@target.com, secound@target.com')
 
-    addfile = raw_input('Would you like to give this email any attachment?\ny/n: ')
-    if addfile == ('y'):
-        attachment = raw_input('Destination to attachment: ')
-        subprocess.call(['sendemail', '-s', smtpserver, '-t', toemail, '-f', fromemail, '-a', attachment, '-u', subject, '-m', message])
+    print(bcolors.WARNING + '\nYou can also use -cc | -bcc' + bcolors.ENDC)
+    print('Example 3: fist@target.com -cc secound@target.com')
+
+    toemail = raw_input('\nTarget email: ')
+    fromemail = raw_input('\nSender email: ')
+    subject = raw_input('\nSubject: ')
+    print('\n')
+    predefined = raw_input(bcolors.WARNING + 'Use a predefined template from a txt or html file?\ny/n: ' + bcolors.ENDC)
+    if predefined == 'y':
+        template = raw_input('Location of your template: ')
+
+        addfile = raw_input(bcolors.WARNING + '\nWould you like to give this email any attachment?\ny/n: ' + bcolors.ENDC)
+        if addfile == ('y'):
+            attachment = raw_input('Destination to attachment: ')
+            cmd1 = "cat %s | sendemail -s %s -t %s -f %s -u %s -a %s"%(template,smtpserver,toemail,fromemail,subject,attachment)
+            os.system(cmd1)
+            raw_input(bcolors.OKGREEN + 'Press [ENTER] to return to the main menu...' + bcolors.ENDC)
+        else:
+            cmd2 = "cat %s | sendemail -s %s -t %s -f %s -u %s"%(template,smtpserver,toemail,fromemail,subject)
+            os.system(cmd2)
+            raw_input(bcolors.OKGREEN + 'Press [ENTER] to return to the main menu...' + bcolors.ENDC)
+
     else:
-        subprocess.call(['sendemail', '-s', smtpserver, '-t', toemail, '-f', fromemail, '-u', subject, '-m', message])
-        raw_input(bcolors.OKGREEN + 'Press [ENTER] to return to the main menu...' + bcolors.ENDC)
-        subprocess.call(['kalel'])
-    sys.exit(1)
+        message = raw_input('\nMessage: ')
+
+        addfile = raw_input(bcolors.WARNING + '\nWould you like to give this email any attachment?\ny/n: ' + bcolors.ENDC)
+        if addfile == ('y'):
+            attachment = raw_input('Destination to attachment: ')
+            cmd3 = "sendemail -s %s -t %s -f %s -u %s -m %s -a %s"%(smtpserver,toemail,fromemail,subject,message,attachment)
+            os.system(cmd3)
+            raw_input(bcolors.OKGREEN + 'Press [ENTER] to return to the main menu...' + bcolors.ENDC)
+        else:
+            cmd4 = "sendemail -s %s -t %s -f %s -u %s -m %s"%(smtpserver,toemail,fromemail,subject,message)
+            os.system(cmd4)
+            raw_input(bcolors.OKGREEN + 'Press [ENTER] to return to the main menu...' + bcolors.ENDC)
+
 
 
 try:
     spoofemail()
 except KeyboardInterrupt:
     print("\n\nDon't forget your cat!\n")
-finally:
-    subprocess.call(['kalel'])
