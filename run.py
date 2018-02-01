@@ -1,9 +1,12 @@
 #!/usr/bin/env python
-
+from __future__ import print_function
 import os
 import time
 import subprocess
 import sys
+from builtins import input
+import webbrowser
+
 
 # python 2 and 3 compatibility
 try:
@@ -33,7 +36,7 @@ if not os.geteuid() == 0:
 def dosetup():
     if not os.path.isfile("/opt/KalEl/src/setupOK"):
         print("You must run setup.py first\n")
-        ans1 = raw_input("Would you like to run setup now?\n y/n: ")
+        ans1 = input("Would you like to run setup now?\n y/n: ")
         if ans1 == "y":
             os.system('sudo python setup.py install')
         else:
@@ -74,9 +77,11 @@ def pullupdate(define_version):
                 version = open(kaldir + "/version.lock", "r").read()
 
             if cv != version:
-                print("There is a new update available!")
+                print(bcolors.FAIL + '      - Version: %s'%(define_version) + bcolors.ENDC),
+                print(bcolors.WARNING + "   ! There is a new update available!" + bcolors.ENDC)
             else:
-                print("KalEl is up to date!")
+                print(bcolors.OKGREEN + '   - Version: %s'%(define_version) + bcolors.ENDC),
+                print(bcolors.OKGREEN + "     KalEl is up to date!" + bcolors.ENDC)
 
         # Pull the version from out git repo
         p = multiprocessing.Process(target=pull_version)
@@ -108,19 +113,20 @@ torip = getip()
 
 
 def logo():
-    print(bcolors.OKBLUE + """
+    print(bcolors.OKBLUE + """\
     __  ___      ___       __          _______  __
    |  |/  /     /   \     |  |        |   ____||  |
    |  '  /     /  ^  \    |  |        |  |__   |  |
    |    <     /  /_\  \   |  |        |   __|  |  |
    |  .  \   /  _____  \  |  `----.   |  |____ |  `----.
-   |__|\__\ /__/     \__\ |_______|   |_______||_______|
+   |__|\__\ /__/     \__\ |_______|   |_______||_______| """ + bcolors.ENDC)
+    print('\n')
+    print(bcolors.OKGREEN + '   - Kal El Network Penetration Testing' + bcolors.ENDC)
+    print(bcolors.FAIL + '   - Created by NoobsCode' + bcolors.ENDC)
+    print(bcolors.WARNING + '   - Github: https://github.com/noobscode' + bcolors.ENDC)
+    print('   - Tor IP: %s' % (torip))
+    print('%s' % (pullupdate(define_version)))
 
-    - Kal El Network Penetration Testing (""" + bcolors.WARNING + """KalEl NPT""" + bcolors.OKBLUE + """)
-    - Created by:""" + bcolors.FAIL + """ NoobsCode """ + bcolors.OKBLUE + """ """ + bcolors.WARNING + """ """ + bcolors.OKBLUE + """
-    - Version: """ + bcolors.OKGREEN + """%s""" % (define_version) + bcolors.WARNING + """ """), pullupdate(define_version)
-    print('    - Tor IP: %s' % (torip))
-    print("""    - Github: """ + bcolors.OKGREEN + """https://www.Github.com/NoobsCode/KalEl""" + bcolors.OKBLUE + """ """)
 
 
 # initial user menu
@@ -141,7 +147,7 @@ def agreement():
                   "service and that you will only use this tool for "
                   "lawful purposes only.{1}".format(bcolors.FAIL, bcolors.ENDC))
             print(bcolors.OKGREEN)
-            choice = raw_input("\nDo you agree to the terms of service [y/n]: ")
+            choice = input("\nDo you agree to the terms of service [y/n]: ")
             if choice == "y":
                 with open("/opt/KalEl/src/agreement", "w") as filewrite:
                     filewrite.write("user accepted")
@@ -151,8 +157,19 @@ def agreement():
                 sys.exit()
 
 
+def impowned():
+    rp = open("module/cracking/pawned/README.md","r")
+    print (rp.read())
+    print(bcolors.WARNING + '\nSpecial thanks to: D4Vinci' + bcolors.ENDC)
+    print('Github: https://github.com/D4Vinci')
+    print('\n')
+    pawneduser = input('Email or Username to Scan: ')
+    pwnd = ('module/cracking/pawned/pawned.py -api2 -q %s')%(pawneduser)
+    os.system(pwnd)
+
+
 def goon():
-    raw_input(bcolors.OKGREEN + 'Press [ENTER] to continue...' + bcolors.ENDC)
+    input(bcolors.OKGREEN + 'Press [ENTER] to continue...' + bcolors.ENDC)
 
 
 # Header information Intro text
@@ -182,7 +199,7 @@ def mainmenu():
         10.Help/Tutorial
         99.Exit/Quit
         """)
-        ans = raw_input("Choose Attack Vector: ")
+        ans = input("Choose Attack Vector: ")
         if ans == "1":
             os.system('clear')
             logo()
@@ -207,7 +224,10 @@ def mainmenu():
             print('Updating')
             update_kalel()
         elif ans == "10":
-            print("Visit our github at: https://github.com/noobscode/kalel")
+            print(bcolors.WARNING + '\nIf you have any issues you can open an issue on github' + bcolors.ENDC)
+            print(bcolors.FAIL + 'https://github.com/noobscode/kalel/issues' + bcolors.ENDC)
+            print(bcolors.OKGREEN + '\nFor guides and tutorials go to: ' + bcolors.ENDC),
+            print(bcolors.FAIL + 'https://noobscode.github.io/kalel\n' + bcolors.ENDC)
             goon()
         elif ans == "99":
             print("\n Goodbye")
@@ -230,7 +250,7 @@ def submenu_tor():
 
         99.Back to main menu
         """)
-        ans = raw_input("Choose Action: ")
+        ans = input("Choose Action: ")
         if ans == "1":
             os.system('module/tor/tor.py start')
         elif ans == "2":
@@ -251,14 +271,21 @@ def submenu_cracking():
         intro()
         print ("""
         1.Hash Buster        # Tool for Cracking MD5 hashes
+        2.Pawned             # Check if an email have been hacked
+                               Then use the credentials and try to login
+                               to services like facebook, etc
 
         99.Back to main menu
         """)
-        ans = raw_input("Choose Action: ")
+        ans = input("Choose Action: ")
         if ans == "1":
             os.system('clear')
             logo()
-            os.system('module/cracking/hashbuster.py')
+            os.system('module/cracking/hashbuster/hashbuster.py')
+        if ans == "2":
+            os.system('clear')
+            logo()
+            impowned()
         elif ans == "99":
             mainmenu()
         elif ans != "":
