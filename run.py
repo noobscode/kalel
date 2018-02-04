@@ -188,12 +188,12 @@ def mainmenu():
         logo()
         intro()
         print ("""
-        1.Traffic Spoof Attack # Force Redirect Network Traffic (DNS SPOOF)
-        2.The Harvester        # Harvest Email, Vhosts, Subdomain names (more)
+        1.Traffic Spoofing     # Force Redirect Network Traffic (DNS SPOOF)
+        2.The Harvester        # Harvest Emails, Vhosts, Subdomain names (more)
         3.Spoof Emails         # Send Fake Emails To And From Anyone
         4.Traffic Generator    # Generate Fake Visitor Stats on a webpage
         5.Activate Tor(VPN)    # Activate VPN For Anonymity To Hide Yourself
-        6.Cracking Tools       # Tools for cracking passwords and decrypt MD5
+        6.Cracking Tools       # Password Related Attacks
 
         9.Update KalEl         # Update The KalEl Toolkit
         10.Help/Tutorial
@@ -272,11 +272,11 @@ def submenu_cracking():
         print ("""
         1.Hash Buster        # Tool for Cracking MD5|SHA1|SHA2 Hashes
         -----------------------------------------------------------------
-        2.Pawned             # Check if an email have been hacked
+        2.Pawned             # Check if an email have been hacked.
                                Then use the credentials and try to
-                               auto-login to services like facebook, etc.
+                               auto-login to services like facebook etc.
         -----------------------------------------------------------------
-        3.Password Generator # Scrapes all the words from a specified
+        3.Wordlist Generator # Scrapes all the words from a specified
                                domain to generate a wordlist for use in
                                a dictionary password attack.
 

@@ -64,7 +64,7 @@ SendEmail:
 * Send fake emails to and from anyone. Also supports attachments.
 -------------------
 The Traffic Generator:
-* Traffic Generator is a tool used to generate fake web traffic that can be used to fake page views and visitor stats. If used with TOR VPN module you will have the option to enable auto switching where it will get a new IP for each request resulting in unique visitor stats as well as page views.
+* Traffic Generator is a tool used to generate fake web traffic that can be used   to fake page views and visitor stats. If used with TOR VPN module you will have the option to enable auto switching where it will get a new IP for each request resulting in unique visitor stats as well as page views.
 -------------------
 KalElVPN Module (Tor VPN):
 * The VPN module included in this tool have three simple functions
@@ -74,7 +74,20 @@ KalElVPN Module (Tor VPN):
 
   - Switch, Allows you to request a new IP address at any time.
     Can be used as many times as you wish.
-
+-------------------
+HashBuster:
+* Tool for Cracking MD5|SHA1|SHA2 Hashes
+-------------------
+Pawned:
+* Check if an email have been hacked. Then use the credentials and try to
+  auto-login to services like facebook, linkedin, google etc.
+  This can also reveal if the user have been a member of example: Ashley Madison
+-------------------
+Web-Scraper Password Generator:
+* This tool pulls all the link from a given domain and then
+  scrapes all the words, generating a wordlist for you to use as a wordlist for password cracking (Dictionary attack).
+  This is very usefull if you have issues finding a wordlist with a uncommon language, we all wish rockyou and realuniq came in our language right?
+-------------------
 (More attack vectors will be available with updates)
 
 Technical Information:
