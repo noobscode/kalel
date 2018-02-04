@@ -270,10 +270,15 @@ def submenu_cracking():
         logo()
         intro()
         print ("""
-        1.Hash Buster        # Tool for Cracking MD5 hashes
+        1.Hash Buster        # Tool for Cracking MD5|SHA1|SHA2 Hashes
+        -----------------------------------------------------------------
         2.Pawned             # Check if an email have been hacked
-                               Then use the credentials and try to login
-                               to services like facebook, etc
+                               Then use the credentials and try to
+                               auto-login to services like facebook, etc.
+        -----------------------------------------------------------------
+        3.Password Generator # Scrapes all the words from a specified
+                               domain to generate a wordlist for use in
+                               a dictionary password attack.
 
         99.Back to main menu
         """)
@@ -286,6 +291,11 @@ def submenu_cracking():
             os.system('clear')
             logo()
             impowned()
+        if ans == "3":
+            os.system('clear')
+            logo()
+            subprocess.Popen('python module/cracking/wspg/scraper.py', shell=True).wait()
+            #os.system('module/cracking/web_scrape_pwd_gen/scraper.py')
         elif ans == "99":
             mainmenu()
         elif ans != "":

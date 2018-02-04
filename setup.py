@@ -190,6 +190,8 @@ def fixpermissions():
     subprocess.Popen(['chmod', '+x', '/opt/KalEl/module/harvester/prep.py'])
     subprocess.Popen(['chmod', '+x', '/opt/KalEl/module/harvester/engine.py'])
     subprocess.Popen(['chmod', '+x', '/opt/KalEl/module/spoofmail/spoofmail.py'])
+    subprocess.Popen(['chmod', '+x', '/opt/KalEl/module/cracking/web_scrape_pwd_gen/core.py'])
+    subprocess.Popen(['chmod', '+x', '/opt/KalEl/module/cracking/web_scrape_pwd_gen/scraper.py'])
 
 
 def uninstall():
