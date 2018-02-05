@@ -22,7 +22,7 @@ if not os.geteuid() == 0:
 
 
 def install():
-    print(bcolors.OKGREEN + "Setting up KalEl For You..." + bcolors.ENDC)
+    print(bcolors.WARNING + "Setting up KalEl For You..." + bcolors.ENDC)
 
     # Create and Copy files to installdir /opt/KalEl
     if os.path.isfile('/opt/KalEl/run.py'):
@@ -34,7 +34,7 @@ def install():
         else:
             sys.exit()
 
-    print(bcolors.OKGREEN + "[*] Copying KalEl into the /opt/KalEl directory..." + bcolors.ENDC)
+    print(bcolors.WARNING + "[*] Copying KalEl into the /opt/KalEl directory..." + bcolors.ENDC)
     cwdpath = os.getcwd()
     subprocess.Popen("cp -rf %s /opt/KalEl" % cwdpath, shell=True).wait()
     subprocess.Popen("mkdir /opt/KalEl/.kal", shell=True).wait()
@@ -43,7 +43,7 @@ def install():
     subprocess.Popen("ln -s /opt/KalEl/run.py /opt/KalEl/kalel", shell=True).wait()
     subprocess.Popen("ln -s /opt/KalEl/module/tor/tor.py /opt/KalEl/kalelvpn", shell=True).wait()
 
-    print(bcolors.OKGREEN + "[*] Installing KalEl installer to /usr/bin/kalel..." + bcolors.ENDC)
+    print(bcolors.WARNING + "[*] Installing KalEl installer to /usr/bin/kalel..." + bcolors.ENDC)
     if os.path.isfile("/usr/bin/kalel"):
         subprocess.Popen("rm /usr/bin/kalel", shell=True).wait()
     else:
@@ -63,7 +63,7 @@ def install():
     # CHECK REQUIRED DEPENDENCIES
     FNULL = open(os.devnull, 'w')
 
-    # Install sendemail for mail spoofing
+    # sendemail for mail spoofing
     try:
         subprocess.call(["sendemail"], stdout=FNULL, stderr=subprocess.STDOUT)
         with open("/opt/KalEl/src/config.py", "w") as filewrite:
@@ -85,7 +85,7 @@ def install():
             print(bcolors.FAIL + "something else went wrong, try again" + bcolors.ENDC)
             raise
 
-        # check sslstrip for mail spoofing
+        # check sslstrip
     try:
         subprocess.call(["sslstrip", "-h"], stdout=FNULL, stderr=subprocess.STDOUT)
         with open("/opt/KalEl/src/config.py", "w") as filewrite:
@@ -154,7 +154,7 @@ def install():
             print(bcolors.FAIL + "something else went wrong, try again" + bcolors.ENDC)
             raise
 
-    # Install dependencies for TOR
+    # Install python dependencies
     try:
         import pip
     except ImportError:
@@ -164,23 +164,24 @@ def install():
     else:
         print(bcolors.OKGREEN + '[*] PIP OK!' + bcolors.ENDC)
 
+        # Install Required python packages from requirements.txt
         try:
             subprocess.call(["pip","install", "-r", "requirements.txt"], stdout=FNULL, stderr=subprocess.STDOUT)
         except OSError:
-            print('Requirements install gave us an error')
+            print(bcolors.FAIL + 'Requirements install gave us an error' + bcolors.ENDC)
         else:
             print(bcolors.OKGREEN + '[*] Requirements install OK!' + bcolors.ENDC)
         pass
 
-    # Write setup to src/setupOK to let the tool know setup is complete
+    # Write setup to src/setupOK to let kalel know setup is complete
     with open("/opt/KalEl/src/setupOK", "w") as filewrite:
         filewrite.write("Installed")
 
-    print(bcolors.OKGREEN + "[*] We are now finished! To run KalEl, type kalel..." + bcolors.ENDC)
+    print(bcolors.WARNING + "[*] We are now finished! To run KalEl, type kalel..." + bcolors.ENDC)
     sys.exit()
 
+# Write permission to run
 def fixpermissions():
-    # Write permission to run
     subprocess.Popen(['chmod', '+x', '/opt/KalEl/run.py'])
     subprocess.Popen(['chmod', '+x', '/opt/KalEl/module/tor/tor.py'])
     subprocess.Popen(['chmod', '+x', '/opt/KalEl/module/cracking/pawned/pawned.py'])
@@ -190,27 +191,27 @@ def fixpermissions():
     subprocess.Popen(['chmod', '+x', '/opt/KalEl/module/harvester/prep.py'])
     subprocess.Popen(['chmod', '+x', '/opt/KalEl/module/harvester/engine.py'])
     subprocess.Popen(['chmod', '+x', '/opt/KalEl/module/spoofmail/spoofmail.py'])
-    subprocess.Popen(['chmod', '+x', '/opt/KalEl/module/cracking/web_scrape_pwd_gen/core.py'])
-    subprocess.Popen(['chmod', '+x', '/opt/KalEl/module/cracking/web_scrape_pwd_gen/scraper.py'])
+    subprocess.Popen(['chmod', '+x', '/opt/KalEl/module/cracking/wspg/core.py'])
+    subprocess.Popen(['chmod', '+x', '/opt/KalEl/module/cracking/wspg/scraper.py'])
 
-
+# KalEl uninstaller arg: uninstall
 def uninstall():
-    print('KalEl Uninstaller...')
+    print(bcolors.WARNING + 'KalEl Uninstaller...' + bcolors.ENDC)
 
     # Check if KalEl is installed
     if not os.path.isfile('/opt/KalEl/run.py'):
         if not os.path.isfile('/usr/bin/kalel'):
-            print('KaleEl Is not installed')
+            print(bcolors.FAIL + 'KaleEl Is not installed' + bcolors.ENDC)
             sys.exit()
 
     # If KalEl is installed we'll remove it
     if os.path.isdir('/opt/KalEl'):
-        print('Found KalEl...')
-        print('Removing')
+        print(bcolors.OKBLUE + 'Found KalEl...' + bcolors.ENDC)
+        print(bcolors.FAIL + 'Removing' + bcolors.ENDC)
         subprocess.Popen("rm /usr/bin/kalel*", shell=True).wait()
         subprocess.Popen("rm -fr /root/.kal", shell=True).wait()
         subprocess.Popen("cd ..;rm -fr /opt/KalEl", shell=True).wait()
-        print('Done! Bye KalEl :()')
+        print(bcolors.OKGREEN + 'Done! Bye KalEl :(' + bcolors.ENDC)
         time.sleep(2)
         sys.exit()
 

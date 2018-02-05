@@ -42,7 +42,7 @@ def dosetup():
         else:
             sys.exit()
 
-
+# Kaldir used in the pullupdate function:
 kaldir = '/opt/KalEl/.kal'
 
 
@@ -56,6 +56,7 @@ def get_version():
 define_version = get_version()
 
 
+# Get version number from github
 def pullupdate(define_version):
     cv = get_version()
 
@@ -108,10 +109,10 @@ def getip():
     torip = open("module/tor/tor.ip", "r").read().rstrip()
     return torip
 
-
 torip = getip()
 
 
+# Main Logo and header
 def logo():
     print(bcolors.OKBLUE + """\
     __  ___      ___       __          _______  __
@@ -157,9 +158,10 @@ def agreement():
                 sys.exit()
 
 
+# Helper function for Pawned.
 def impowned():
     rp = open("module/cracking/pawned/README.md","r")
-    print (rp.read())
+    print (bcolors.OKBLUE + rp.read() + bcolors.ENDC)
     print(bcolors.WARNING + '\nSpecial thanks to: D4Vinci' + bcolors.ENDC)
     print('Github: https://github.com/D4Vinci')
     print('\n')
@@ -168,6 +170,8 @@ def impowned():
     os.system(pwnd)
 
 
+
+# Just something to prevent some scripts to fly away.
 def goon():
     input(bcolors.OKGREEN + 'Press [ENTER] to continue...' + bcolors.ENDC)
 
@@ -262,6 +266,7 @@ def submenu_tor():
         elif ans != "":
             print("\n Not Valid Choice Try again")
 
+
 # Create the submenu for cracking
 def submenu_cracking():
     os.system('clear')
@@ -320,12 +325,7 @@ def update_kalel():
     subprocess.Popen("mkdir /opt/KalEl/.kal", shell=True).wait()
 
     # Fix permissions
-    subprocess.Popen(['chmod', '+x', '/opt/KalEl/run.py'])
-    subprocess.Popen(['chmod', '+x', '/opt/KalEl/module/tor/tor.py'])
-    subprocess.Popen(['chmod', '+x', '/opt/KalEl/module/ettercap/spoof.py'])
-    subprocess.Popen(['chmod', '+x', '/opt/KalEl/module/harvester/prep.py'])
-    subprocess.Popen(['chmod', '+x', '/opt/KalEl/module/harvester/engine.py'])
-    subprocess.Popen(['chmod', '+x', '/opt/KalEl/module/spoofmail/spoofmail.py'])
+    import setup.fixpermissions
     cleanup()
 
     # Create a symbolic link for launching the toolkit via usr/bin

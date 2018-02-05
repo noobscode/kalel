@@ -15,6 +15,16 @@ class bcolors:
     UNDERLINE = '\033[4m'
 
 
+def etterintro():
+    print(bcolors.OKBLUE + '     - [MITM | dns_spoof | ARPspoofing]' + bcolors.ENDC)
+    print(bcolors.WARNING + """
+    This tools uses ettercap with dns_spoof plugin to spoof web traffic.
+    This tool will improve on ettercap's simplicity, but for now its just a
+    really simple up and down script for force redirecting your victims
+    via custom spoofed dns records using a Man In The Middle Attack.
+    """ + bcolors.ENDC)
+
+
 def ettercappath():
     FNULL = open(os.devnull, 'w')
     try:
@@ -112,6 +122,7 @@ def spoofstart():
 
 
 try:
+    etterintro()
     spoofstart()
 except KeyboardInterrupt:
     print("\n\nDon't forget your cat!\n")
