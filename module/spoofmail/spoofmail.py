@@ -51,10 +51,10 @@ def spoofemail():
     # Input variables to use when performing action
     print(bcolors.WARNING + '\nTarget email examples:' + bcolors.ENDC)
     print('Example 1: single@target.com')
-    print('Example 2: first@target.com, secound@target.com')
+    print('Example 2: first@target.com, second@target.com')
 
     print(bcolors.WARNING + '\nYou can also use -cc | -bcc' + bcolors.ENDC)
-    print('Example 3: fist@target.com -cc secound@target.com')
+    print('Example 3: first@target.com -cc second@target.com')
 
     toemail = raw_input('\nTarget email: ')
     fromemail = raw_input('\nSender email: ')
