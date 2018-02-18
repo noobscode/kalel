@@ -110,7 +110,7 @@ def install():
 
     # Check if ettercap is installed or present
     try:
-        subprocess.call(["ettercap"], stdout=FNULL, stderr=subprocess.STDOUT)
+        subprocess.call(["ettercap", "-h"], stdout=FNULL, stderr=subprocess.STDOUT)
         with open("/opt/KalEl/src/config.py", "w") as filewrite:
             filewrite.write("\n#[ETTERCAP-DIR]\n")
             filewrite.write("etterdir")
@@ -133,7 +133,7 @@ def install():
 
     # Tor bundle
     try:
-        subprocess.call(["tor"], stdout=FNULL, stderr=subprocess.STDOUT)
+        subprocess.call(["tor", "-h"], stdout=FNULL, stderr=subprocess.STDOUT)
         with open("/opt/KalEl/src/config.py", "w") as filewrite:
             filewrite.write("\n#[TOR-DIR]\n")
             filewrite.write("tordir")
