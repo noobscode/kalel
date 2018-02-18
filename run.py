@@ -38,7 +38,7 @@ def dosetup():
         print("You must run setup.py first\n")
         ans1 = input("Would you like to run setup now?\n y/n: ")
         if ans1 == "y":
-            os.system('sudo python setup.py install')
+            os.system('sudo -H python setup.py install')
         else:
             sys.exit()
 
@@ -324,16 +324,18 @@ def update_kalel():
     subprocess.Popen("git reset --hard FETCH_HEAD", shell=True).wait()
     subprocess.Popen("mkdir /opt/KalEl/.kal", shell=True).wait()
 
-    # Fix permissions
-    import setup.fixpermissions
-    cleanup()
-
     # Create a symbolic link for launching the toolkit via usr/bin
     subprocess.Popen("ln -s /opt/KalEl/run.py /opt/KalEl/kalel", shell=True).wait()
 
-    print("Update finished, returning to main menu.")
+    # Set symlinks
+    import setup.setlinks
+
+    # Fix permissions
+    import setup.fixpermissions
+
+    print("Update finished, You need to manually start kalel again")
     goon()
-    os.system('kalel')
+    sys.exit()
     time.sleep(2)
 
 

@@ -48,17 +48,9 @@ def install():
         subprocess.Popen("rm /usr/bin/kalel", shell=True).wait()
     else:
         pass
-    # Link for main program
-    subprocess.Popen("echo #!/bin/bash > /usr/bin/kalel", shell=True).wait()
-    subprocess.Popen("echo cd /opt/KalEl >> /usr/bin/kalel", shell=True).wait()
-    subprocess.Popen("echo exec python2 kalel $@ >> /usr/bin/kalel", shell=True).wait()
-    subprocess.Popen("chmod +x /usr/bin/kalel", shell=True).wait()
-    # Link for TOR TOR VPN
-    subprocess.Popen("echo #!/bin/bash > /usr/bin/kalelvpn", shell=True).wait()
-    subprocess.Popen("echo cd /opt/KalEl >> /usr/bin/kalelvpn", shell=True).wait()
-    subprocess.Popen("echo exec python2 kalelvpn $@ >> /usr/bin/kalelvpn", shell=True).wait()
-    subprocess.Popen("chmod +x /usr/bin/kalelvpn", shell=True).wait()
-    fixpermissions()
+        setlinks()
+        fixpermissions()
+
 
     # CHECK REQUIRED DEPENDENCIES
     FNULL = open(os.devnull, 'w')
@@ -193,6 +185,19 @@ def fixpermissions():
     subprocess.Popen(['chmod', '+x', '/opt/KalEl/module/spoofmail/spoofmail.py'])
     subprocess.Popen(['chmod', '+x', '/opt/KalEl/module/cracking/wspg/core.py'])
     subprocess.Popen(['chmod', '+x', '/opt/KalEl/module/cracking/wspg/scraper.py'])
+
+
+    # Link for main program
+def setlinks():
+    subprocess.Popen("echo #!/bin/bash > /usr/bin/kalel", shell=True).wait()
+    subprocess.Popen("echo cd /opt/KalEl >> /usr/bin/kalel", shell=True).wait()
+    subprocess.Popen("echo exec python2 kalel $@ >> /usr/bin/kalel", shell=True).wait()
+    subprocess.Popen("chmod +x /usr/bin/kalel", shell=True).wait()
+    # Link for TOR TOR VPN
+    subprocess.Popen("echo #!/bin/bash > /usr/bin/kalelvpn", shell=True).wait()
+    subprocess.Popen("echo cd /opt/KalEl >> /usr/bin/kalelvpn", shell=True).wait()
+    subprocess.Popen("echo exec python2 kalelvpn $@ >> /usr/bin/kalelvpn", shell=True).wait()
+    subprocess.Popen("chmod +x /usr/bin/kalelvpn", shell=True).wait()
 
 # KalEl uninstaller arg: uninstall
 def uninstall():
