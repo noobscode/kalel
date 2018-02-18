@@ -328,7 +328,7 @@ def update_kalel():
     # Create a symbolic link for launching the toolkit via usr/bin
     subprocess.Popen("ln -s /opt/KalEl/run.py /opt/KalEl/kalel", shell=True).wait()
     print('Symlink created')
-    
+
     # Set symlinks
     import setup.setlinks
     print('All symlinks set')
