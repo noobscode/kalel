@@ -32,8 +32,7 @@ Choose Attack Vector:  $
 ```
 Supported OS:
 -------------------
-Tested on Ubuntu 14/17 and Kali Linux (Debian)
-
+Tested on Ubuntu 14/17, Kali Linux, Parrot Security OS and Debian 9.
 
 How to install:
 -------------------
@@ -97,13 +96,13 @@ Technical Information:
 
 Requirements:
 * Python
-* PIP
-* Stem
-* Requests
+** PIP
+** Stem
+** Requests
 * Tor
 * SendEmail
 * ettercap-text-only
-
+* SSLSTRIP
 
 Support This Project
 --------------------
