@@ -92,9 +92,10 @@ Web-Scraper Password Generator:
 
 Technical Information:
 -------------------------------
-* Written in Python
+## Written in Python
 
 Requirements:
+
 * Python
  * PIP
  * Stem
@@ -103,7 +104,8 @@ Requirements:
  * pwnedpasswords
  * wheel
 
-* Application/Scripts
+Application/Scripts:
+
  * Tor
  * SendEmail
  * ettercap-text-only
