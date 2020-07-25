@@ -92,7 +92,7 @@ Web-Scraper Password Generator:
 
 Technical Information:
 -------------------------------
-## Written in Python
+Written in Python
 
 Requirements:
 
