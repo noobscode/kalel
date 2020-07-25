@@ -96,17 +96,17 @@ Technical Information:
 
 Requirements:
 * Python
-** PIP
-** Stem
-** Requests
-** future
-** pwnedpasswords
-** wheel
+ * PIP
+ * Stem
+ * Requests
+ * future
+ * pwnedpasswords
+ * wheel
 
 * Application/Scripts
-** Tor
-** SendEmail
-** ettercap-text-only
+ * Tor
+ * SendEmail
+ * ettercap-text-only
 
 Support This Project
 --------------------
