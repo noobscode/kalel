@@ -78,10 +78,8 @@ KalElVPN Module (Tor VPN):
 HashBuster:
 * Tool for Cracking MD5|SHA1|SHA2 Hashes
 -------------------
-Pawned:
-* Check if an email have been hacked. Then use the credentials and try to
-  auto-login to services like facebook, linkedin, google etc.
-  This can also reveal if the email have been a member of example: Ashley Madison
+Pwned:
+* Check if an email have been hacked. It uses haveibeenpwned v3 api to test email accounts and tries to find the password in Pastebin Dumps.
 -------------------
 Web-Scraper Password Generator:
 * This tool pulls all the link from a given domain and then
@@ -99,10 +97,14 @@ Requirements:
 ** PIP
 ** Stem
 ** Requests
-* Tor
-* SendEmail
-* ettercap-text-only
-* SSLSTRIP
+** future
+** pwnedpasswords
+** wheel
+
+* Application/Scripts
+** Tor
+** SendEmail
+** ettercap-text-only
 
 Support This Project
 --------------------

@@ -1,4 +1,7 @@
 mechanicalsoup >=0.9
 requests
+wheel
+future
 pyOpenSSL>=16.2.0
 stem
+pwnedpasswords

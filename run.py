@@ -160,13 +160,13 @@ def agreement():
 
 # Helper function for Pawned.
 def impowned():
-    rp = open("module/cracking/pawned/README.md","r")
+    rp = open("module/cracking/pwned/README.md","r")
     print (bcolors.OKBLUE + rp.read() + bcolors.ENDC)
     print(bcolors.WARNING + '\nSpecial thanks to: D4Vinci' + bcolors.ENDC)
     print('Github: https://github.com/D4Vinci')
     print('\n')
-    pawneduser = input('Email or Username to Scan: ')
-    pwnd = ('module/cracking/pawned/pawned.py -api2 -q %s')%(pawneduser)
+    pawneduser = input('Email to Scan: ')
+    pwnd = ('module/cracking/pwned/pwned.py --email %s')%(pawneduser)
     os.system(pwnd)
 
 
@@ -275,13 +275,11 @@ def submenu_cracking():
         logo()
         intro()
         print ("""
-        1.Hash Buster        # Tool for Cracking MD5|SHA1|SHA2 Hashes
+        1. Hash Buster        # Tool for Cracking MD5|SHA1|SHA2 Hashes
         -----------------------------------------------------------------
-        2.Pawned             # Check if an email have been hacked.
-                               Then use the credentials and try to
-                               auto-login to services like facebook etc.
+        2. Pawned             # Check if an email have been hacked.
         -----------------------------------------------------------------
-        3.Wordlist Generator # Scrapes all the words from a specified
+        3. Wordlist Generator # Scrapes all the words from a specified
                                domain to generate a wordlist for use in
                                a dictionary password attack.
 

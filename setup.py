@@ -77,27 +77,27 @@ def install():
             print(bcolors.FAIL + "something else went wrong, try again" + bcolors.ENDC)
             raise
 
-        # check sslstrip
-    try:
-        subprocess.call(["sslstrip", "-h"], stdout=FNULL, stderr=subprocess.STDOUT)
-        with open("/opt/KalEl/src/config.py", "w") as filewrite:
-            filewrite.write("\n#[SSLSTRIP-DIR]\n")
-            filewrite.write("sslstripdir")
-            filewrite.write(" = ")
-            filewrite.write("/usr/bin/sslstrip\n")
-        print(bcolors.OKGREEN + '[*] SSLSTRIP OK!' + bcolors.ENDC)
-    except OSError as e:
-        if e.errno == os.errno.ENOENT:
-            print(bcolors.WARNING + "Please install SSLSTRIP or define it's install directory" + bcolors.ENDC)
-            sslstripdir = raw_input("Define SSLSTRIP installation directory\nexample (default): /usr/bin/sslstrip\nDir: ")
-            with open("/opt/KalEl/src/config.py", "w") as filewrite:
-                filewrite.write("\n#[SENDEMAIL-DIR]\n")
-                filewrite.write("sslstripdir")
-                filewrite.write(" = ")
-                filewrite.write("'%s'\n" % sslstripdir)
-        else:
-            print(bcolors.FAIL + "something else went wrong, try again" + bcolors.ENDC)
-            raise
+    # check sslstrip
+    # try:
+    #     subprocess.call(["sslstrip", "-h"], stdout=FNULL, stderr=subprocess.STDOUT)
+    #     with open("/opt/KalEl/src/config.py", "w") as filewrite:
+    #         filewrite.write("\n#[SSLSTRIP-DIR]\n")
+    #         filewrite.write("sslstripdir")
+    #         filewrite.write(" = ")
+    #         filewrite.write("/usr/bin/sslstrip\n")
+    #     print(bcolors.OKGREEN + '[*] SSLSTRIP OK!' + bcolors.ENDC)
+    # except OSError as e:
+    #     if e.errno == os.errno.ENOENT:
+    #         print(bcolors.WARNING + "Please install SSLSTRIP or define it's install directory" + bcolors.ENDC)
+    #         sslstripdir = raw_input("Define SSLSTRIP installation directory\nexample (default): /usr/bin/sslstrip\nDir: ")
+    #         with open("/opt/KalEl/src/config.py", "w") as filewrite:
+    #             filewrite.write("\n#[SENDEMAIL-DIR]\n")
+    #             filewrite.write("sslstripdir")
+    #             filewrite.write(" = ")
+    #             filewrite.write("'%s'\n" % sslstripdir)
+    #     else:
+    #         print(bcolors.FAIL + "something else went wrong, try again" + bcolors.ENDC)
+    #         raise
 
 
     # Check if ettercap is installed or present
@@ -176,7 +176,7 @@ def install():
 def fixpermissions():
     subprocess.Popen(['chmod', '+x', '/opt/KalEl/run.py'])
     subprocess.Popen(['chmod', '+x', '/opt/KalEl/module/tor/tor.py'])
-    subprocess.Popen(['chmod', '+x', '/opt/KalEl/module/cracking/pawned/pawned.py'])
+    subprocess.Popen(['chmod', '+x', '/opt/KalEl/module/cracking/pwned/pwned.py'])
     subprocess.Popen(['chmod', '+x', '/opt/KalEl/module/cracking/hashbuster/hashbuster.py'])
     subprocess.Popen(['chmod', '+x', '/opt/KalEl/module/trafficgen/getheader.py'])
     subprocess.Popen(['chmod', '+x', '/opt/KalEl/module/ettercap/spoof.py'])
