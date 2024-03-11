@@ -1,4 +1,4 @@
-# NEW JULY 2020 UPDATE!!
+# WARNING: THIS REPO IS NO LONGER MAINTAINED!!
 
 # Network Stress Test and Penetration Testing Toolkit
 # Author: NoobsCode
